@@ -10,7 +10,12 @@ export function TodayPriorities({ fields, now }: { fields: FieldSummary[]; now: 
   const top = fields.filter((f) => f.topAlert).slice(0, 5);
   return (
     <aside className="flex h-full min-h-0 flex-col rounded-2xl border border-line bg-white p-4 shadow-sm">
-      <h2 className="mb-3 text-xs font-semibold tracking-wider text-muted uppercase">Today&apos;s priorities</h2>
+      <div className="mb-2 flex items-center justify-between gap-2">
+        <h2 className="text-xs font-semibold tracking-wider text-muted uppercase">Today&apos;s priorities</h2>
+        <Link href="/issues/urgent" className="inline-flex min-h-11 items-center gap-0.5 text-sm font-semibold text-urgent">
+          All urgent <ChevronRight size={16} aria-hidden />
+        </Link>
+      </div>
       <ol className="flex-1 space-y-1 overflow-y-auto">
         {top.map((field, i) => {
           const alert = field.topAlert!;
@@ -47,12 +52,6 @@ export function TodayPriorities({ fields, now }: { fields: FieldSummary[]; now: 
           );
         })}
       </ol>
-      <Link
-        href="/issues/urgent"
-        className="mt-2 inline-flex min-h-11 items-center gap-1 self-end text-sm font-semibold text-urgent"
-      >
-        See all urgent <ChevronRight size={16} aria-hidden />
-      </Link>
     </aside>
   );
 }
