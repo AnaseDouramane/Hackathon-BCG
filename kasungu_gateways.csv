@@ -1,0 +1,41 @@
+gateway_id,group_id,group_name,zone_id,lat,lon,fields,shared_water_channel
+GW-01,g1,Tiyanjane Group,Z1,-13.021119,33.515398,15,yes
+GW-02,g2,Umodzi Group,Z7,-13.017586,33.44391,15,no
+GW-03,g3,Mgwirizano Group,Z3,-13.072979,33.501088,15,yes
+GW-04,g4,Kupeza Group,Z1,-12.987953,33.496511,15,no
+GW-05,g5,Chikondi Group,Z5,-13.057981,33.437786,15,yes
+GW-06,g6,Chimwemwe Group,Z3,-13.044288,33.534268,15,no
+GW-07,g7,Tikondane Group,Z7,-12.988374,33.449972,15,yes
+GW-08,g8,Mtendere Group,Z5,-13.089063,33.474505,15,no
+GW-09,g9,Chisomo Group,Z1,-12.995387,33.527759,15,yes
+GW-10,g10,Dalitso Group,Z8,-13.030449,33.420435,15,no
+GW-11,g11,Tadala Group,Z4,-13.076726,33.526863,15,yes
+GW-12,g12,Kuyesera Group,Z8,-12.969522,33.479064,15,no
+GW-13,g13,Tigwirizane Group,Z6,-13.082933,33.439277,15,yes
+GW-14,g14,Zikomo Group,Z2,-13.02419,33.549522,15,no
+GW-15,g15,Madalitso Group,Z8,-12.994097,33.424918,15,yes
+GW-16,g16,Mphamvu Group,Z4,-13.100723,33.497514,15,no
+GW-17,g17,Chiyembekezo Group,Z2,-12.971657,33.51805,15,yes
+GW-18,g18,Tithandizane Group,Z6,-13.054827,33.411753,15,no
+GW-19,g19,Kukula Group,Z4,-13.063814,33.550057,15,yes
+GW-20,g20,Ulemu Group,Z8,-12.964211,33.452628,15,no
+GW-21,g21,Tiyanjane II Group,Z6,-13.104244,33.455699,15,yes
+GW-22,g22,Umodzi II Group,Z2,-12.997287,33.551693,15,no
+GW-23,g23,Mgwirizano II Group,Z8,-13.01303,33.404797,15,yes
+GW-24,g24,Kupeza II Group,Z4,-13.099637,33.525744,15,no
+GW-25,g25,Chikondi II Group,Z2,-12.953905,33.49599,15,yes
+GW-26,g26,Chimwemwe II Group,Z6,-13.082743,33.416151,15,no
+GW-27,g27,Tikondane II Group,Z4,-13.039883,33.566007,15,yes
+GW-28,g28,Mtendere II Group,Z8,-12.971704,33.424096,15,no
+GW-29,g29,Chisomo II Group,Z6,-13.11744,33.482338,15,yes
+GW-30,g30,Dalitso II Group,Z2,-12.969776,33.540795,15,no
+GW-31,g31,Tadala II Group,Z6,-13.040892,33.393952,15,yes
+GW-32,g32,Kuyesera II Group,Z4,-13.085894,33.553164,15,no
+GW-33,g33,Tigwirizane II Group,Z8,-12.946082,33.465909,15,yes
+GW-34,g34,Zikomo II Group,Z6,-13.108504,33.433284,15,no
+GW-35,g35,Madalitso II Group,Z2,-13.009245,33.571013,15,yes
+GW-36,g36,Mphamvu II Group,Z8,-12.991334,33.399122,15,no
+GW-37,g37,Chiyembekezo II Group,Z4,-13.119279,33.514633,15,yes
+GW-38,g38,Tithandizane II Group,Z2,-12.947019,33.517907,15,no
+GW-39,g39,Kukula II Group,Z6,-13.073066,33.395294,15,yes
+GW-40,g40,Ulemu II Group,Z4,-13.060954,33.574464,15,no
