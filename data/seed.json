@@ -1,0 +1,3399 @@
+{
+  "demoNow": "2027-03-01T05:00:00.000Z",
+  "farmers": [
+    {
+      "id": "frm_001",
+      "name": "Chikondi Phiri",
+      "phone": "+265 991 402 118",
+      "village": "Kaluluma"
+    },
+    {
+      "id": "frm_002",
+      "name": "Mphatso Mwale",
+      "phone": "+265 888 315 742",
+      "village": "Mtunthama"
+    },
+    {
+      "id": "frm_003",
+      "name": "Grace Banda",
+      "phone": "+265 991 234 567",
+      "village": "Chilanga"
+    },
+    {
+      "id": "frm_004",
+      "name": "Tiyamike Tembo",
+      "phone": "+265 995 118 903",
+      "village": "Santhe"
+    },
+    {
+      "id": "frm_005",
+      "name": "Kondwani Chirwa",
+      "phone": "+265 884 667 210",
+      "village": "Chamama"
+    },
+    {
+      "id": "frm_006",
+      "name": "Esnart Zulu",
+      "phone": "+265 992 540 371",
+      "village": "Nkhamenya"
+    },
+    {
+      "id": "frm_007",
+      "name": "Blessings Nyirenda",
+      "phone": "+265 887 209 654",
+      "village": "Lisasadzi"
+    },
+    {
+      "id": "frm_008",
+      "name": "Thokozani Mbewe",
+      "phone": "+265 996 781 025",
+      "village": "Wimbe"
+    },
+    {
+      "id": "frm_009",
+      "name": "Madalitso Kamanga",
+      "phone": "+265 885 432 190",
+      "village": "Chulu"
+    },
+    {
+      "id": "frm_010",
+      "name": "Yamikani Gondwe",
+      "phone": "+265 993 610 487",
+      "village": "Kapelula"
+    },
+    {
+      "id": "frm_011",
+      "name": "Chisomo Mvula",
+      "phone": "+265 889 157 336",
+      "village": "Chilanga"
+    },
+    {
+      "id": "frm_012",
+      "name": "Limbani Kumwenda",
+      "phone": "+265 997 284 619",
+      "village": "Santhe"
+    },
+    {
+      "id": "frm_013",
+      "name": "Alinafe Lungu",
+      "phone": "+265 886 903 452",
+      "village": "Mtunthama"
+    },
+    {
+      "id": "frm_014",
+      "name": "Dalitso Chavula",
+      "phone": "+265 994 076 831",
+      "village": "Kaluluma"
+    },
+    {
+      "id": "frm_015",
+      "name": "Ruth Msiska",
+      "phone": "+265 883 512 764",
+      "village": "Chamama"
+    },
+    {
+      "id": "frm_016",
+      "name": "Patrick Jere",
+      "phone": "+265 998 345 102",
+      "village": "Nkhamenya"
+    },
+    {
+      "id": "frm_017",
+      "name": "Agnes Nkhoma",
+      "phone": "+265 882 691 578",
+      "village": "Lisasadzi"
+    },
+    {
+      "id": "frm_018",
+      "name": "Joseph Mhango",
+      "phone": "+265 990 827 346",
+      "village": "Wimbe"
+    },
+    {
+      "id": "frm_019",
+      "name": "Fanny Kachale",
+      "phone": "+265 881 460 293",
+      "village": "Chulu"
+    },
+    {
+      "id": "frm_020",
+      "name": "Wongani Moyo",
+      "phone": "+265 999 138 705",
+      "village": "Kapelula"
+    }
+  ],
+  "crops": [
+    {
+      "id": "crp_maize",
+      "code": "MAIZE",
+      "name": "Maize",
+      "cycleDays": 130
+    },
+    {
+      "id": "crp_soybean",
+      "code": "SOYBEAN",
+      "name": "Soybean",
+      "cycleDays": 110
+    },
+    {
+      "id": "crp_beans",
+      "code": "BEANS",
+      "name": "Beans",
+      "cycleDays": 80
+    },
+    {
+      "id": "crp_tobacco",
+      "code": "TOBACCO",
+      "name": "Tobacco",
+      "cycleDays": 150
+    },
+    {
+      "id": "crp_groundnut",
+      "code": "GROUNDNUT",
+      "name": "Groundnut",
+      "cycleDays": 100
+    }
+  ],
+  "fields": [
+    {
+      "id": "fld_001",
+      "code": "KSG-001",
+      "name": "Kaluluma West",
+      "farmerId": "frm_001",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.512719,
+              -13.006085
+            ],
+            [
+              33.514038,
+              -13.005767
+            ],
+            [
+              33.513688,
+              -13.003965
+            ],
+            [
+              33.512256,
+              -13.0042
+            ],
+            [
+              33.512719,
+              -13.006085
+            ]
+          ]
+        ]
+      },
+      "areaHa": 3.2,
+      "centroidLat": -13.004962,
+      "centroidLng": 33.513168
+    },
+    {
+      "id": "fld_002",
+      "code": "KSG-002",
+      "name": "Mtunthama East",
+      "farmerId": "frm_002",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.516152,
+              -13.006723
+            ],
+            [
+              33.517525,
+              -13.006429
+            ],
+            [
+              33.517325,
+              -13.004877
+            ],
+            [
+              33.515888,
+              -13.005124
+            ],
+            [
+              33.516152,
+              -13.006723
+            ]
+          ]
+        ]
+      },
+      "areaHa": 2.7,
+      "centroidLat": -13.005791,
+      "centroidLng": 33.516722
+    },
+    {
+      "id": "fld_003",
+      "code": "KSG-003",
+      "name": "Chilanga North",
+      "farmerId": "frm_003",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.521295,
+              -13.006344
+            ],
+            [
+              33.522731,
+              -13.006369
+            ],
+            [
+              33.522712,
+              -13.005092
+            ],
+            [
+              33.521278,
+              -13.005078
+            ],
+            [
+              33.521295,
+              -13.006344
+            ]
+          ]
+        ]
+      },
+      "areaHa": 2.2,
+      "centroidLat": -13.005714,
+      "centroidLng": 33.521981
+    },
+    {
+      "id": "fld_004",
+      "code": "KSG-004",
+      "name": "Santhe South",
+      "farmerId": "frm_004",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.526649,
+              -13.006742
+            ],
+            [
+              33.528013,
+              -13.006386
+            ],
+            [
+              33.527719,
+              -13.005402
+            ],
+            [
+              33.526434,
+              -13.005735
+            ],
+            [
+              33.526649,
+              -13.006742
+            ]
+          ]
+        ]
+      },
+      "areaHa": 1.7,
+      "centroidLat": -13.006062,
+      "centroidLng": 33.527212
+    },
+    {
+      "id": "fld_005",
+      "code": "KSG-005",
+      "name": "Chamama",
+      "farmerId": "frm_005",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.53166,
+              -13.006009
+            ],
+            [
+              33.532764,
+              -13.005482
+            ],
+            [
+              33.532063,
+              -13.003982
+            ],
+            [
+              33.530977,
+              -13.004528
+            ],
+            [
+              33.53166,
+              -13.006009
+            ]
+          ]
+        ]
+      },
+      "areaHa": 2.4,
+      "centroidLat": -13.004991,
+      "centroidLng": 33.531838
+    },
+    {
+      "id": "fld_006",
+      "code": "KSG-006",
+      "name": "Nkhamenya",
+      "farmerId": "frm_006",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.511267,
+              -13.010743
+            ],
+            [
+              33.512533,
+              -13.010596
+            ],
+            [
+              33.512573,
+              -13.00966
+            ],
+            [
+              33.511208,
+              -13.009764
+            ],
+            [
+              33.511267,
+              -13.010743
+            ]
+          ]
+        ]
+      },
+      "areaHa": 1.5,
+      "centroidLat": -13.010185,
+      "centroidLng": 33.5119
+    },
+    {
+      "id": "fld_007",
+      "code": "KSG-007",
+      "name": "Lisasadzi",
+      "farmerId": "frm_007",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.516447,
+              -13.009903
+            ],
+            [
+              33.51729,
+              -13.010025
+            ],
+            [
+              33.517451,
+              -13.009342
+            ],
+            [
+              33.516454,
+              -13.009225
+            ],
+            [
+              33.516447,
+              -13.009903
+            ]
+          ]
+        ]
+      },
+      "areaHa": 0.8,
+      "centroidLat": -13.009615,
+      "centroidLng": 33.516905
+    },
+    {
+      "id": "fld_008",
+      "code": "KSG-008",
+      "name": "Wimbe",
+      "farmerId": "frm_008",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.522167,
+              -13.010882
+            ],
+            [
+              33.523757,
+              -13.010433
+            ],
+            [
+              33.52305,
+              -13.008415
+            ],
+            [
+              33.521598,
+              -13.00894
+            ],
+            [
+              33.522167,
+              -13.010882
+            ]
+          ]
+        ]
+      },
+      "areaHa": 4,
+      "centroidLat": -13.009638,
+      "centroidLng": 33.522687
+    },
+    {
+      "id": "fld_009",
+      "code": "KSG-009",
+      "name": "Chulu",
+      "farmerId": "frm_009",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.525524,
+              -13.010571
+            ],
+            [
+              33.527144,
+              -13.011017
+            ],
+            [
+              33.527283,
+              -13.009987
+            ],
+            [
+              33.525835,
+              -13.009609
+            ],
+            [
+              33.525524,
+              -13.010571
+            ]
+          ]
+        ]
+      },
+      "areaHa": 1.9,
+      "centroidLat": -13.010265,
+      "centroidLng": 33.52643
+    },
+    {
+      "id": "fld_010",
+      "code": "KSG-010",
+      "name": "Kapelula",
+      "farmerId": "frm_010",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.531731,
+              -13.010303
+            ],
+            [
+              33.53318,
+              -13.01003
+            ],
+            [
+              33.533035,
+              -13.008944
+            ],
+            [
+              33.531501,
+              -13.009316
+            ],
+            [
+              33.531731,
+              -13.010303
+            ]
+          ]
+        ]
+      },
+      "areaHa": 1.9,
+      "centroidLat": -13.009636,
+      "centroidLng": 33.532388
+    },
+    {
+      "id": "fld_011",
+      "code": "KSG-011",
+      "name": "Chilanga South",
+      "farmerId": "frm_011",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.511103,
+              -13.014742
+            ],
+            [
+              33.512106,
+              -13.01486
+            ],
+            [
+              33.512258,
+              -13.013884
+            ],
+            [
+              33.511247,
+              -13.013818
+            ],
+            [
+              33.511103,
+              -13.014742
+            ]
+          ]
+        ]
+      },
+      "areaHa": 1.2,
+      "centroidLat": -13.014343,
+      "centroidLng": 33.511695
+    },
+    {
+      "id": "fld_012",
+      "code": "KSG-012",
+      "name": "Santhe North",
+      "farmerId": "frm_012",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.516918,
+              -13.015541
+            ],
+            [
+              33.518913,
+              -13.015605
+            ],
+            [
+              33.518886,
+              -13.014043
+            ],
+            [
+              33.516999,
+              -13.013968
+            ],
+            [
+              33.516918,
+              -13.015541
+            ]
+          ]
+        ]
+      },
+      "areaHa": 3.7,
+      "centroidLat": -13.014779,
+      "centroidLng": 33.517925
+    },
+    {
+      "id": "fld_013",
+      "code": "KSG-013",
+      "name": "Mtunthama West",
+      "farmerId": "frm_013",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.522178,
+              -13.015767
+            ],
+            [
+              33.523316,
+              -13.01547
+            ],
+            [
+              33.522952,
+              -13.013778
+            ],
+            [
+              33.521732,
+              -13.013884
+            ],
+            [
+              33.522178,
+              -13.015767
+            ]
+          ]
+        ]
+      },
+      "areaHa": 2.6,
+      "centroidLat": -13.014735,
+      "centroidLng": 33.522572
+    },
+    {
+      "id": "fld_014",
+      "code": "KSG-014",
+      "name": "Kaluluma East",
+      "farmerId": "frm_014",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.526043,
+              -13.014544
+            ],
+            [
+              33.527056,
+              -13.01434
+            ],
+            [
+              33.526786,
+              -13.013619
+            ],
+            [
+              33.525817,
+              -13.01389
+            ],
+            [
+              33.526043,
+              -13.014544
+            ]
+          ]
+        ]
+      },
+      "areaHa": 0.9,
+      "centroidLat": -13.014073,
+      "centroidLng": 33.526427
+    },
+    {
+      "id": "fld_015",
+      "code": "KSG-015",
+      "name": "Chamama South",
+      "farmerId": "frm_015",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.531547,
+              -13.01547
+            ],
+            [
+              33.533283,
+              -13.015132
+            ],
+            [
+              33.532971,
+              -13.013381
+            ],
+            [
+              33.531249,
+              -13.013653
+            ],
+            [
+              33.531547,
+              -13.01547
+            ]
+          ]
+        ]
+      },
+      "areaHa": 3.8,
+      "centroidLat": -13.014349,
+      "centroidLng": 33.532234
+    },
+    {
+      "id": "fld_016",
+      "code": "KSG-016",
+      "name": "Nkhamenya East",
+      "farmerId": "frm_016",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.512529,
+              -13.019861
+            ],
+            [
+              33.513701,
+              -13.019665
+            ],
+            [
+              33.513297,
+              -13.017998
+            ],
+            [
+              33.512275,
+              -13.01825
+            ],
+            [
+              33.512529,
+              -13.019861
+            ]
+          ]
+        ]
+      },
+      "areaHa": 2.2,
+      "centroidLat": -13.018939,
+      "centroidLng": 33.512938
+    },
+    {
+      "id": "fld_017",
+      "code": "KSG-017",
+      "name": "Lisasadzi South",
+      "farmerId": "frm_017",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.516105,
+              -13.019085
+            ],
+            [
+              33.517437,
+              -13.019397
+            ],
+            [
+              33.517543,
+              -13.018521
+            ],
+            [
+              33.516374,
+              -13.018184
+            ],
+            [
+              33.516105,
+              -13.019085
+            ]
+          ]
+        ]
+      },
+      "areaHa": 1.4,
+      "centroidLat": -13.018783,
+      "centroidLng": 33.516852
+    },
+    {
+      "id": "fld_018",
+      "code": "KSG-018",
+      "name": "Wimbe North",
+      "farmerId": "frm_018",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.521592,
+              -13.018366
+            ],
+            [
+              33.523146,
+              -13.018011
+            ],
+            [
+              33.52298,
+              -13.016965
+            ],
+            [
+              33.521329,
+              -13.017394
+            ],
+            [
+              33.521592,
+              -13.018366
+            ]
+          ]
+        ]
+      },
+      "areaHa": 2,
+      "centroidLat": -13.017672,
+      "centroidLng": 33.522275
+    },
+    {
+      "id": "fld_019",
+      "code": "KSG-019",
+      "name": "Chulu East",
+      "farmerId": "frm_019",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.525701,
+              -13.019196
+            ],
+            [
+              33.527137,
+              -13.019266
+            ],
+            [
+              33.527124,
+              -13.018238
+            ],
+            [
+              33.525647,
+              -13.018244
+            ],
+            [
+              33.525701,
+              -13.019196
+            ]
+          ]
+        ]
+      },
+      "areaHa": 1.7,
+      "centroidLat": -13.018753,
+      "centroidLng": 33.526348
+    },
+    {
+      "id": "fld_020",
+      "code": "KSG-020",
+      "name": "Kapelula South",
+      "farmerId": "frm_020",
+      "boundary": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.532034,
+              -13.019102
+            ],
+            [
+              33.532799,
+              -13.018863
+            ],
+            [
+              33.532426,
+              -13.018198
+            ],
+            [
+              33.531725,
+              -13.018442
+            ],
+            [
+              33.532034,
+              -13.019102
+            ]
+          ]
+        ]
+      },
+      "areaHa": 0.7,
+      "centroidLat": -13.018647,
+      "centroidLng": 33.532238
+    }
+  ],
+  "plantings": [
+    {
+      "id": "pln_001",
+      "fieldId": "fld_001",
+      "cropId": "crp_maize",
+      "plantedAt": "2026-12-28",
+      "expectedHarvestStart": "2027-05-02",
+      "expectedHarvestEnd": "2027-05-17",
+      "growthStage": "VEGETATIVE",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_002",
+      "fieldId": "fld_002",
+      "cropId": "crp_maize",
+      "plantedAt": "2027-01-18",
+      "expectedHarvestStart": "2027-05-23",
+      "expectedHarvestEnd": "2027-06-07",
+      "growthStage": "VEGETATIVE",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_003",
+      "fieldId": "fld_003",
+      "cropId": "crp_groundnut",
+      "plantedAt": "2026-11-28",
+      "expectedHarvestStart": "2027-02-25",
+      "expectedHarvestEnd": "2027-03-08",
+      "growthStage": "MATURITY",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_004",
+      "fieldId": "fld_004",
+      "cropId": "crp_maize",
+      "plantedAt": "2026-12-05",
+      "expectedHarvestStart": "2027-04-09",
+      "expectedHarvestEnd": "2027-04-24",
+      "growthStage": "FRUITING",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_005",
+      "fieldId": "fld_005",
+      "cropId": "crp_tobacco",
+      "plantedAt": "2026-11-20",
+      "expectedHarvestStart": "2027-04-14",
+      "expectedHarvestEnd": "2027-04-29",
+      "growthStage": "FLOWERING",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_006",
+      "fieldId": "fld_006",
+      "cropId": "crp_soybean",
+      "plantedAt": "2026-12-15",
+      "expectedHarvestStart": "2027-03-30",
+      "expectedHarvestEnd": "2027-04-14",
+      "growthStage": "FLOWERING",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_007",
+      "fieldId": "fld_007",
+      "cropId": "crp_beans",
+      "plantedAt": "2026-12-20",
+      "expectedHarvestStart": "2027-03-05",
+      "expectedHarvestEnd": "2027-03-12",
+      "growthStage": "MATURITY",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_008",
+      "fieldId": "fld_008",
+      "cropId": "crp_maize",
+      "plantedAt": "2026-12-01",
+      "expectedHarvestStart": "2027-04-05",
+      "expectedHarvestEnd": "2027-04-20",
+      "growthStage": "FRUITING",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_009",
+      "fieldId": "fld_009",
+      "cropId": "crp_soybean",
+      "plantedAt": "2026-12-10",
+      "expectedHarvestStart": "2027-03-25",
+      "expectedHarvestEnd": "2027-04-09",
+      "growthStage": "FRUITING",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_010",
+      "fieldId": "fld_010",
+      "cropId": "crp_tobacco",
+      "plantedAt": "2026-11-10",
+      "expectedHarvestStart": "2027-03-01",
+      "expectedHarvestEnd": "2027-04-15",
+      "growthStage": "MATURITY",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_011",
+      "fieldId": "fld_011",
+      "cropId": "crp_groundnut",
+      "plantedAt": "2026-12-20",
+      "expectedHarvestStart": "2027-03-25",
+      "expectedHarvestEnd": "2027-04-09",
+      "growthStage": "FLOWERING",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_012",
+      "fieldId": "fld_012",
+      "cropId": "crp_soybean",
+      "plantedAt": "2026-11-30",
+      "expectedHarvestStart": "2027-03-10",
+      "expectedHarvestEnd": "2027-03-20",
+      "growthStage": "MATURITY",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_013",
+      "fieldId": "fld_013",
+      "cropId": "crp_maize",
+      "plantedAt": "2027-01-22",
+      "expectedHarvestStart": "2027-05-27",
+      "expectedHarvestEnd": "2027-06-11",
+      "growthStage": "VEGETATIVE",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_014",
+      "fieldId": "fld_014",
+      "cropId": "crp_beans",
+      "plantedAt": "2027-01-05",
+      "expectedHarvestStart": "2027-03-21",
+      "expectedHarvestEnd": "2027-04-05",
+      "growthStage": "FLOWERING",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_015",
+      "fieldId": "fld_015",
+      "cropId": "crp_maize",
+      "plantedAt": "2026-11-25",
+      "expectedHarvestStart": "2027-03-30",
+      "expectedHarvestEnd": "2027-04-14",
+      "growthStage": "FRUITING",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_016",
+      "fieldId": "fld_016",
+      "cropId": "crp_soybean",
+      "plantedAt": "2026-12-08",
+      "expectedHarvestStart": "2027-03-23",
+      "expectedHarvestEnd": "2027-04-07",
+      "growthStage": "FRUITING",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_017",
+      "fieldId": "fld_017",
+      "cropId": "crp_groundnut",
+      "plantedAt": "2026-12-05",
+      "expectedHarvestStart": "2027-03-10",
+      "expectedHarvestEnd": "2027-03-25",
+      "growthStage": "FRUITING",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_018",
+      "fieldId": "fld_018",
+      "cropId": "crp_tobacco",
+      "plantedAt": "2026-11-28",
+      "expectedHarvestStart": "2027-04-22",
+      "expectedHarvestEnd": "2027-05-07",
+      "growthStage": "FLOWERING",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_019",
+      "fieldId": "fld_019",
+      "cropId": "crp_maize",
+      "plantedAt": "2026-12-03",
+      "expectedHarvestStart": "2027-04-07",
+      "expectedHarvestEnd": "2027-04-22",
+      "growthStage": "FRUITING",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "pln_020",
+      "fieldId": "fld_020",
+      "cropId": "crp_beans",
+      "plantedAt": "2026-12-28",
+      "expectedHarvestStart": "2027-03-13",
+      "expectedHarvestEnd": "2027-03-28",
+      "growthStage": "FRUITING",
+      "status": "ACTIVE"
+    }
+  ],
+  "alerts": [
+    {
+      "id": "alr_001a",
+      "fieldId": "fld_001",
+      "plantingId": "pln_001",
+      "category": "DISEASE",
+      "severity": "CRITICAL",
+      "title": "Fall armyworm outbreak (~30% of plants)",
+      "description": "Drone imagery from 28 Feb shows ragged holes and frass in the leaf whorls of about 30% of plants, spreading from the eastern edge of the field.",
+      "source": "DRONE",
+      "confidence": 0.81,
+      "detectedAt": "2027-02-28T09:30:00.000Z",
+      "dueAt": "2027-03-01T16:00:00.000Z",
+      "status": "OPEN",
+      "resolvedAt": null
+    },
+    {
+      "id": "alr_002a",
+      "fieldId": "fld_002",
+      "plantingId": "pln_002",
+      "category": "FERTILIZER",
+      "severity": "HIGH",
+      "title": "Nitrogen deficiency — top-dressing window closing",
+      "description": "Soil nitrogen is 9 ppm (target above 20) and the crop is at knee height, the last useful window for urea. 38 mm of rain is forecast for 2 March.",
+      "source": "SENSOR",
+      "confidence": 0.74,
+      "detectedAt": "2027-02-28T04:00:00.000Z",
+      "dueAt": "2027-03-02T06:00:00.000Z",
+      "status": "OPEN",
+      "resolvedAt": null
+    },
+    {
+      "id": "alr_003a",
+      "fieldId": "fld_003",
+      "plantingId": "pln_003",
+      "category": "MATURITY",
+      "severity": "CRITICAL",
+      "title": "Harvest now: heavy rain in 48h",
+      "description": "Sample plants show about 75% of pods with dark inner shells (mature). 45 mm of rain is forecast on 3 March; mature pods left in wet soil can develop aflatoxin.",
+      "source": "WEATHER",
+      "confidence": 0.85,
+      "detectedAt": "2027-03-01T04:00:00.000Z",
+      "dueAt": "2027-03-03T00:00:00.000Z",
+      "status": "OPEN",
+      "resolvedAt": null
+    },
+    {
+      "id": "alr_004a",
+      "fieldId": "fld_004",
+      "plantingId": "pln_004",
+      "category": "DISEASE",
+      "severity": "HIGH",
+      "title": "Grey leaf spot on lower leaves",
+      "description": "Drone close-ups show long, rectangular grey-brown lesions between the leaf veins on lower leaves, mostly in the wetter, low-lying half of the field.",
+      "source": "DRONE",
+      "confidence": 0.72,
+      "detectedAt": "2027-02-27T10:00:00.000Z",
+      "dueAt": "2027-03-06T07:00:00.000Z",
+      "status": "OPEN",
+      "resolvedAt": null
+    },
+    {
+      "id": "alr_005a",
+      "fieldId": "fld_005",
+      "plantingId": "pln_005",
+      "category": "DISEASE",
+      "severity": "MEDIUM",
+      "title": "Conditions favourable to black shank",
+      "description": "Soil moisture has stayed above 85% with soil temperature above 25 °C for 6 days. These conditions favour black shank, a soil-borne disease. No visual symptoms have been confirmed yet.",
+      "source": "SENSOR",
+      "confidence": 0.64,
+      "detectedAt": "2027-02-28T04:00:00.000Z",
+      "dueAt": "2027-03-09T07:00:00.000Z",
+      "status": "OPEN",
+      "resolvedAt": null
+    },
+    {
+      "id": "alr_005b",
+      "fieldId": "fld_005",
+      "plantingId": "pln_005",
+      "category": "FERTILIZER",
+      "severity": "MEDIUM",
+      "title": "Low potassium for leaf quality",
+      "description": "Soil potassium is 62 ppm, below the 100 ppm target for tobacco. Low potassium reduces leaf quality and burn.",
+      "source": "SENSOR",
+      "confidence": 0.78,
+      "detectedAt": "2027-02-27T04:00:00.000Z",
+      "dueAt": "2027-03-10T07:00:00.000Z",
+      "status": "OPEN",
+      "resolvedAt": null
+    },
+    {
+      "id": "alr_006a",
+      "fieldId": "fld_006",
+      "plantingId": "pln_006",
+      "category": "DISEASE",
+      "severity": "MEDIUM",
+      "title": "Early soybean rust symptoms",
+      "description": "Drone images show small tan-brown spots on lower leaves in the centre of the field. Humid weather is forecast for the coming days.",
+      "source": "DRONE",
+      "confidence": 0.68,
+      "detectedAt": "2027-02-27T11:00:00.000Z",
+      "dueAt": "2027-03-07T07:00:00.000Z",
+      "status": "OPEN",
+      "resolvedAt": null
+    },
+    {
+      "id": "alr_007a",
+      "fieldId": "fld_007",
+      "plantingId": "pln_007",
+      "category": "DISEASE",
+      "severity": "MEDIUM",
+      "title": "Angular leaf spot",
+      "description": "Angular brown lesions limited by the leaf veins are visible on about 15% of leaves.",
+      "source": "DRONE",
+      "confidence": 0.7,
+      "detectedAt": "2027-02-26T10:00:00.000Z",
+      "dueAt": "2027-03-08T07:00:00.000Z",
+      "status": "OPEN",
+      "resolvedAt": null
+    },
+    {
+      "id": "alr_007b",
+      "fieldId": "fld_007",
+      "plantingId": "pln_007",
+      "category": "MATURITY",
+      "severity": "MEDIUM",
+      "title": "Harvest window opens on 5 March",
+      "description": "Pods are turning yellow; the harvest window is expected between 5 and 12 March. Rain on 3–4 March may slow drying.",
+      "source": "WEATHER",
+      "confidence": 0.8,
+      "detectedAt": "2027-02-28T04:00:00.000Z",
+      "dueAt": "2027-03-06T07:00:00.000Z",
+      "status": "OPEN",
+      "resolvedAt": null
+    },
+    {
+      "id": "alr_008a",
+      "fieldId": "fld_008",
+      "plantingId": "pln_008",
+      "category": "FERTILIZER",
+      "severity": "LOW",
+      "title": "Acidic soil (pH 5.0)",
+      "description": "Soil pH has averaged 5.0 this season. Below 5.5, maize takes up phosphorus poorly.",
+      "source": "SENSOR",
+      "confidence": 0.88,
+      "detectedAt": "2027-02-20T04:00:00.000Z",
+      "dueAt": "2027-04-15T07:00:00.000Z",
+      "status": "OPEN",
+      "resolvedAt": null
+    },
+    {
+      "id": "alr_009a",
+      "fieldId": "fld_009",
+      "plantingId": "pln_009",
+      "category": "FERTILIZER",
+      "severity": "MEDIUM",
+      "title": "Low phosphorus at pod set",
+      "description": "Soil phosphorus is 7 ppm (target above 15). Phosphorus supports pod formation.",
+      "source": "SENSOR",
+      "confidence": 0.71,
+      "detectedAt": "2027-02-26T04:00:00.000Z",
+      "dueAt": "2027-03-09T07:00:00.000Z",
+      "status": "OPEN",
+      "resolvedAt": null
+    },
+    {
+      "id": "alr_010a",
+      "fieldId": "fld_010",
+      "plantingId": "pln_010",
+      "category": "MATURITY",
+      "severity": "MEDIUM",
+      "title": "Lower leaves ripe — start priming",
+      "description": "The drone colour index shows the lower leaves turning yellow-green, a sign of ripeness.",
+      "source": "DRONE",
+      "confidence": 0.77,
+      "detectedAt": "2027-02-28T10:00:00.000Z",
+      "dueAt": "2027-03-05T07:00:00.000Z",
+      "status": "OPEN",
+      "resolvedAt": null
+    },
+    {
+      "id": "alr_011a",
+      "fieldId": "fld_011",
+      "plantingId": "pln_011",
+      "category": "DISEASE",
+      "severity": "HIGH",
+      "title": "Groundnut rosette virus",
+      "description": "Drone images show patches of stunted plants with yellow, mottled leaves. Aphids spread the virus between plants.",
+      "source": "DRONE",
+      "confidence": 0.79,
+      "detectedAt": "2027-02-27T09:00:00.000Z",
+      "dueAt": "2027-03-04T12:00:00.000Z",
+      "status": "OPEN",
+      "resolvedAt": null
+    },
+    {
+      "id": "alr_012a",
+      "fieldId": "fld_012",
+      "plantingId": "pln_012",
+      "category": "MATURITY",
+      "severity": "LOW",
+      "title": "Approaching maturity (R7)",
+      "description": "Most pods have turned brown; the expected harvest window is 10–20 March.",
+      "source": "DRONE",
+      "confidence": 0.75,
+      "detectedAt": "2027-02-28T11:00:00.000Z",
+      "dueAt": "2027-03-10T07:00:00.000Z",
+      "status": "OPEN",
+      "resolvedAt": null
+    },
+    {
+      "id": "alr_013a",
+      "fieldId": "fld_013",
+      "plantingId": "pln_013",
+      "category": "FERTILIZER",
+      "severity": "MEDIUM",
+      "title": "Urea top-dressing due in 5 days",
+      "description": "The late-planted crop is approaching knee height and soil nitrogen is 14 ppm.",
+      "source": "SENSOR",
+      "confidence": 0.73,
+      "detectedAt": "2027-02-28T04:00:00.000Z",
+      "dueAt": "2027-03-06T07:00:00.000Z",
+      "status": "OPEN",
+      "resolvedAt": null
+    }
+  ],
+  "actions": [
+    {
+      "id": "act_001a1",
+      "alertId": "alr_001a",
+      "fieldId": "fld_001",
+      "priority": 1,
+      "title": "Scout 20 plants in a W pattern today",
+      "why": "Confirm the drone finding on the ground: look for larvae and fresh frass inside the whorls. The share of infested plants decides whether spraying is needed.",
+      "dueAt": "2027-03-01T14:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_001a2",
+      "alertId": "alr_001a",
+      "fieldId": "fld_001",
+      "priority": 2,
+      "title": "Treat the whorls early morning or late afternoon",
+      "why": "If more than 20% of plants are infested, apply a recommended insecticide or biopesticide into the whorls. Larvae are most exposed at these times of day.",
+      "dueAt": "2027-03-02T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_001a3",
+      "alertId": "alr_001a",
+      "fieldId": "fld_001",
+      "priority": 3,
+      "title": "Re-check the field in 7 days",
+      "why": "Fall armyworm has several generations per season; a new wave is likely after the coming rains.",
+      "dueAt": "2027-03-08T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_002a1",
+      "alertId": "alr_002a",
+      "fieldId": "fld_002",
+      "priority": 1,
+      "title": "Apply urea top-dressing today and cover it with soil",
+      "why": "Place the fertilizer 5–10 cm from each plant and cover it. Applied and buried before the 2 March rain, it is not washed away.",
+      "dueAt": "2027-03-01T16:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_002a2",
+      "alertId": "alr_002a",
+      "fieldId": "fld_002",
+      "priority": 2,
+      "title": "Do not apply during the heavy rain on 2 March",
+      "why": "Uncovered fertilizer on wet soil is lost with the run-off.",
+      "dueAt": "2027-03-02T06:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_002a3",
+      "alertId": "alr_002a",
+      "fieldId": "fld_002",
+      "priority": 3,
+      "title": "Check leaf colour again in 10 days",
+      "why": "Yellowing that starts at the tip of the lower leaves should stop moving up the plant.",
+      "dueAt": "2027-03-11T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_003a1",
+      "alertId": "alr_003a",
+      "fieldId": "fld_003",
+      "priority": 1,
+      "title": "Lift groundnuts within 48 hours",
+      "why": "Pods are mature (inner shell dark) and 45 mm of rain is forecast on 3 March. Wet pods left in the soil develop aflatoxin.",
+      "dueAt": "2027-03-03T00:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_003a2",
+      "alertId": "alr_003a",
+      "fieldId": "fld_003",
+      "priority": 2,
+      "title": "Dry pods on racks or tarpaulins, not on bare soil",
+      "why": "Contact with damp soil is the main route of aflatoxin contamination after lifting.",
+      "dueAt": "2027-03-03T00:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_003a3",
+      "alertId": "alr_003a",
+      "fieldId": "fld_003",
+      "priority": 3,
+      "title": "Store only when kernels rattle in the shell",
+      "why": "Storing nuts before they are fully dry lets mould grow in the bags.",
+      "dueAt": "2027-03-10T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_004a1",
+      "alertId": "alr_004a",
+      "fieldId": "fld_004",
+      "priority": 1,
+      "title": "Confirm in the field on 10 plants",
+      "why": "Grey leaf spot lesions are rectangular and bounded by the veins, which distinguishes them from other leaf spots.",
+      "dueAt": "2027-03-03T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_004a2",
+      "alertId": "alr_004a",
+      "fieldId": "fld_004",
+      "priority": 2,
+      "title": "If lesions reach the ear leaf, consider a fungicide spray",
+      "why": "Protecting the ear leaf and the leaves above it protects grain filling.",
+      "dueAt": "2027-03-06T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_004a3",
+      "alertId": "alr_004a",
+      "fieldId": "fld_004",
+      "priority": 3,
+      "title": "Plan a rotation with soybean or groundnut next season",
+      "why": "The fungus survives on maize residue; rotating crops breaks the cycle.",
+      "dueAt": null,
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_005a1",
+      "alertId": "alr_005a",
+      "fieldId": "fld_005",
+      "priority": 1,
+      "title": "Inspect stems at soil level for dark lesions",
+      "why": "Black shank causes black lesions at the stem base and wilting. Removing infected plants early limits spread.",
+      "dueAt": "2027-03-04T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_005a2",
+      "alertId": "alr_005a",
+      "fieldId": "fld_005",
+      "priority": 2,
+      "title": "Open drainage furrows in waterlogged rows",
+      "why": "The pathogen moves in standing water; draining the field lowers the risk.",
+      "dueAt": "2027-03-06T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_005b3",
+      "alertId": "alr_005b",
+      "fieldId": "fld_005",
+      "priority": 3,
+      "title": "Apply a chloride-free potassium fertilizer",
+      "why": "Tobacco needs potassium for leaf quality; chloride harms leaf burn, so potassium sulphate or nitrate are preferred.",
+      "dueAt": "2027-03-10T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_006a1",
+      "alertId": "alr_006a",
+      "fieldId": "fld_006",
+      "priority": 1,
+      "title": "Check the underside of lower leaves for raised pustules",
+      "why": "Small raised pustules on the leaf underside confirm rust.",
+      "dueAt": "2027-03-03T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_006a2",
+      "alertId": "alr_006a",
+      "fieldId": "fld_006",
+      "priority": 2,
+      "title": "If confirmed, spray a recommended fungicide before flowering ends",
+      "why": "Rust spreads quickly in humid weather and causes early leaf drop, reducing pod fill.",
+      "dueAt": "2027-03-07T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_007a2",
+      "alertId": "alr_007a",
+      "fieldId": "fld_007",
+      "priority": 2,
+      "title": "Avoid working among the plants when leaves are wet",
+      "why": "The fungus spreads with rain splash and on wet hands and tools.",
+      "dueAt": null,
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_007a3",
+      "alertId": "alr_007a",
+      "fieldId": "fld_007",
+      "priority": 3,
+      "title": "Keep seed only from healthy plants",
+      "why": "Angular leaf spot is carried in the seed to the next season.",
+      "dueAt": "2027-03-12T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_007b1",
+      "alertId": "alr_007b",
+      "fieldId": "fld_007",
+      "priority": 1,
+      "title": "Prepare tarpaulins and threshing space for 5 March",
+      "why": "Beans harvested at maturity and dried quickly keep their seed quality.",
+      "dueAt": "2027-03-05T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_008a1",
+      "alertId": "alr_008a",
+      "fieldId": "fld_008",
+      "priority": 1,
+      "title": "Get a soil test from the district lab",
+      "why": "The right amount of lime depends on the soil type.",
+      "dueAt": "2027-03-31T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_008a2",
+      "alertId": "alr_008a",
+      "fieldId": "fld_008",
+      "priority": 2,
+      "title": "Plan agricultural lime before next season's planting",
+      "why": "Lime needs a few weeks in the soil before planting to raise the pH.",
+      "dueAt": "2027-04-15T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_009a1",
+      "alertId": "alr_009a",
+      "fieldId": "fld_009",
+      "priority": 1,
+      "title": "Check for dark-green, stunted plants with few pods",
+      "why": "These symptoms confirm that phosphorus is limiting the crop.",
+      "dueAt": "2027-03-05T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_009a2",
+      "alertId": "alr_009a",
+      "fieldId": "fld_009",
+      "priority": 2,
+      "title": "Next season: phosphorus fertilizer and inoculant at planting",
+      "why": "Soybean needs phosphorus early; rhizobium inoculant lets the plant fix its own nitrogen.",
+      "dueAt": null,
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_010a1",
+      "alertId": "alr_010a",
+      "fieldId": "fld_010",
+      "priority": 1,
+      "title": "Prime 2–3 ripe lower leaves per plant this week",
+      "why": "Leaves picked at ripeness cure to a better grade.",
+      "dueAt": "2027-03-05T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_010a2",
+      "alertId": "alr_010a",
+      "fieldId": "fld_010",
+      "priority": 2,
+      "title": "Check that the curing barn is ready",
+      "why": "Picked leaves must go into the barn on the same day.",
+      "dueAt": "2027-03-03T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_011a1",
+      "alertId": "alr_011a",
+      "fieldId": "fld_011",
+      "priority": 1,
+      "title": "Uproot and bury plants with rosette symptoms",
+      "why": "Infected plants are a source of virus; removing them slows the spread.",
+      "dueAt": "2027-03-04T12:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_011a2",
+      "alertId": "alr_011a",
+      "fieldId": "fld_011",
+      "priority": 2,
+      "title": "Check shoot tips for aphid colonies",
+      "why": "Aphids carry the virus from plant to plant.",
+      "dueAt": "2027-03-04T12:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_011a3",
+      "alertId": "alr_011a",
+      "fieldId": "fld_011",
+      "priority": 3,
+      "title": "Next season: plant early and densely with a tolerant variety",
+      "why": "Early, dense crops suffer less from rosette.",
+      "dueAt": null,
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_012a1",
+      "alertId": "alr_012a",
+      "fieldId": "fld_012",
+      "priority": 1,
+      "title": "Plan harvest labour for 10 March",
+      "why": "Harvesting promptly at full maturity (R8) avoids losses from pod shattering.",
+      "dueAt": "2027-03-08T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_012a2",
+      "alertId": "alr_012a",
+      "fieldId": "fld_012",
+      "priority": 2,
+      "title": "Harvest in the morning",
+      "why": "Pods are less brittle with morning dew, so fewer split open.",
+      "dueAt": null,
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_013a1",
+      "alertId": "alr_013a",
+      "fieldId": "fld_013",
+      "priority": 1,
+      "title": "Buy urea this week",
+      "why": "Having the fertilizer on the farm avoids missing the short top-dressing window.",
+      "dueAt": "2027-03-04T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    },
+    {
+      "id": "act_013a2",
+      "alertId": "alr_013a",
+      "fieldId": "fld_013",
+      "priority": 2,
+      "title": "Apply at knee height, after the 3–4 March rains",
+      "why": "Applying to moist soil just after rain, and covering it, reduces losses.",
+      "dueAt": "2027-03-06T07:00:00.000Z",
+      "done": false,
+      "doneAt": null
+    }
+  ],
+  "sensorReadings": [
+    {
+      "id": "sr_001",
+      "fieldId": "fld_001",
+      "sensorId": "SNS-001",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 36,
+      "soilTempC": 24.5,
+      "ph": 5.8,
+      "nPpm": 23,
+      "pPpm": 16,
+      "kPpm": 102
+    },
+    {
+      "id": "sr_002",
+      "fieldId": "fld_002",
+      "sensorId": "SNS-002",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 39,
+      "soilTempC": 23.4,
+      "ph": 5.9,
+      "nPpm": 9,
+      "pPpm": 17,
+      "kPpm": 101
+    },
+    {
+      "id": "sr_003",
+      "fieldId": "fld_003",
+      "sensorId": "SNS-003",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 24,
+      "soilTempC": 22.4,
+      "ph": 6.3,
+      "nPpm": 20,
+      "pPpm": 20,
+      "kPpm": 109
+    },
+    {
+      "id": "sr_004",
+      "fieldId": "fld_004",
+      "sensorId": "SNS-004",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 42,
+      "soilTempC": 24.1,
+      "ph": 5.9,
+      "nPpm": 22,
+      "pPpm": 21,
+      "kPpm": 119
+    },
+    {
+      "id": "sr_005",
+      "fieldId": "fld_005",
+      "sensorId": "SNS-005",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 88,
+      "soilTempC": 26.5,
+      "ph": 6,
+      "nPpm": 21,
+      "pPpm": 16,
+      "kPpm": 62
+    },
+    {
+      "id": "sr_006",
+      "fieldId": "fld_006",
+      "sensorId": "SNS-006",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 35,
+      "soilTempC": 22.7,
+      "ph": 6.3,
+      "nPpm": 21,
+      "pPpm": 25,
+      "kPpm": 101
+    },
+    {
+      "id": "sr_007",
+      "fieldId": "fld_007",
+      "sensorId": "SNS-007",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 36,
+      "soilTempC": 23.2,
+      "ph": 6.3,
+      "nPpm": 21,
+      "pPpm": 26,
+      "kPpm": 104
+    },
+    {
+      "id": "sr_008",
+      "fieldId": "fld_008",
+      "sensorId": "SNS-008",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 37,
+      "soilTempC": 23.4,
+      "ph": 5,
+      "nPpm": 26,
+      "pPpm": 22,
+      "kPpm": 119
+    },
+    {
+      "id": "sr_009",
+      "fieldId": "fld_009",
+      "sensorId": "SNS-009",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 34,
+      "soilTempC": 22.4,
+      "ph": 6.4,
+      "nPpm": 21,
+      "pPpm": 7,
+      "kPpm": 99
+    },
+    {
+      "id": "sr_010",
+      "fieldId": "fld_010",
+      "sensorId": "SNS-010",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 43,
+      "soilTempC": 22.2,
+      "ph": 6.3,
+      "nPpm": 23,
+      "pPpm": 19,
+      "kPpm": 97
+    },
+    {
+      "id": "sr_011",
+      "fieldId": "fld_011",
+      "sensorId": "SNS-011",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 41,
+      "soilTempC": 22.8,
+      "ph": 6.1,
+      "nPpm": 25,
+      "pPpm": 20,
+      "kPpm": 96
+    },
+    {
+      "id": "sr_012",
+      "fieldId": "fld_012",
+      "sensorId": "SNS-012",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 34,
+      "soilTempC": 25,
+      "ph": 6.3,
+      "nPpm": 21,
+      "pPpm": 18,
+      "kPpm": 134
+    },
+    {
+      "id": "sr_013",
+      "fieldId": "fld_013",
+      "sensorId": "SNS-013",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 42,
+      "soilTempC": 23.3,
+      "ph": 6,
+      "nPpm": 14,
+      "pPpm": 24,
+      "kPpm": 129
+    },
+    {
+      "id": "sr_014",
+      "fieldId": "fld_014",
+      "sensorId": "SNS-014",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 32,
+      "soilTempC": 24.5,
+      "ph": 6.1,
+      "nPpm": 29,
+      "pPpm": 15,
+      "kPpm": 100
+    },
+    {
+      "id": "sr_015",
+      "fieldId": "fld_015",
+      "sensorId": "SNS-015",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 31,
+      "soilTempC": 22.4,
+      "ph": 6.4,
+      "nPpm": 23,
+      "pPpm": 22,
+      "kPpm": 122
+    },
+    {
+      "id": "sr_016",
+      "fieldId": "fld_016",
+      "sensorId": "SNS-016",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 35,
+      "soilTempC": 22.5,
+      "ph": 6.3,
+      "nPpm": 22,
+      "pPpm": 25,
+      "kPpm": 125
+    },
+    {
+      "id": "sr_017",
+      "fieldId": "fld_017",
+      "sensorId": "SNS-017",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 34,
+      "soilTempC": 24.9,
+      "ph": 5.8,
+      "nPpm": 26,
+      "pPpm": 24,
+      "kPpm": 140
+    },
+    {
+      "id": "sr_018",
+      "fieldId": "fld_018",
+      "sensorId": "SNS-018",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 40,
+      "soilTempC": 24.8,
+      "ph": 6.1,
+      "nPpm": 23,
+      "pPpm": 22,
+      "kPpm": 123
+    },
+    {
+      "id": "sr_019",
+      "fieldId": "fld_019",
+      "sensorId": "SNS-019",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 39,
+      "soilTempC": 24.9,
+      "ph": 6.3,
+      "nPpm": 24,
+      "pPpm": 25,
+      "kPpm": 105
+    },
+    {
+      "id": "sr_020",
+      "fieldId": "fld_020",
+      "sensorId": "SNS-020",
+      "measuredAt": "2027-03-01T04:00:00.000Z",
+      "soilMoisturePct": 33,
+      "soilTempC": 22.5,
+      "ph": 6.1,
+      "nPpm": 25,
+      "pPpm": 20,
+      "kPpm": 135
+    }
+  ],
+  "weatherForecasts": [
+    {
+      "id": "wf_001_20270301",
+      "fieldId": "fld_001",
+      "date": "2027-03-01",
+      "tempMinC": 16,
+      "tempMaxC": 26,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_001_20270302",
+      "fieldId": "fld_001",
+      "date": "2027-03-02",
+      "tempMinC": 18,
+      "tempMaxC": 25,
+      "rainMm": 10,
+      "rainProbPct": 65,
+      "humidityPct": 80
+    },
+    {
+      "id": "wf_001_20270303",
+      "fieldId": "fld_001",
+      "date": "2027-03-03",
+      "tempMinC": 17,
+      "tempMaxC": 24,
+      "rainMm": 34,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_001_20270304",
+      "fieldId": "fld_001",
+      "date": "2027-03-04",
+      "tempMinC": 17,
+      "tempMaxC": 24,
+      "rainMm": 17,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_001_20270305",
+      "fieldId": "fld_001",
+      "date": "2027-03-05",
+      "tempMinC": 17,
+      "tempMaxC": 27,
+      "rainMm": 3,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_001_20270306",
+      "fieldId": "fld_001",
+      "date": "2027-03-06",
+      "tempMinC": 17,
+      "tempMaxC": 27,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_001_20270307",
+      "fieldId": "fld_001",
+      "date": "2027-03-07",
+      "tempMinC": 17,
+      "tempMaxC": 28,
+      "rainMm": 4,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_002_20270301",
+      "fieldId": "fld_002",
+      "date": "2027-03-01",
+      "tempMinC": 17,
+      "tempMaxC": 28,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_002_20270302",
+      "fieldId": "fld_002",
+      "date": "2027-03-02",
+      "tempMinC": 18,
+      "tempMaxC": 24,
+      "rainMm": 38,
+      "rainProbPct": 85,
+      "humidityPct": 88
+    },
+    {
+      "id": "wf_002_20270303",
+      "fieldId": "fld_002",
+      "date": "2027-03-03",
+      "tempMinC": 17,
+      "tempMaxC": 24,
+      "rainMm": 27,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_002_20270304",
+      "fieldId": "fld_002",
+      "date": "2027-03-04",
+      "tempMinC": 17,
+      "tempMaxC": 25,
+      "rainMm": 15,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_002_20270305",
+      "fieldId": "fld_002",
+      "date": "2027-03-05",
+      "tempMinC": 18,
+      "tempMaxC": 27,
+      "rainMm": 3,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_002_20270306",
+      "fieldId": "fld_002",
+      "date": "2027-03-06",
+      "tempMinC": 15,
+      "tempMaxC": 28,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_002_20270307",
+      "fieldId": "fld_002",
+      "date": "2027-03-07",
+      "tempMinC": 18,
+      "tempMaxC": 28,
+      "rainMm": 4,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_003_20270301",
+      "fieldId": "fld_003",
+      "date": "2027-03-01",
+      "tempMinC": 17,
+      "tempMaxC": 27,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_003_20270302",
+      "fieldId": "fld_003",
+      "date": "2027-03-02",
+      "tempMinC": 18,
+      "tempMaxC": 26,
+      "rainMm": 8,
+      "rainProbPct": 60,
+      "humidityPct": 78
+    },
+    {
+      "id": "wf_003_20270303",
+      "fieldId": "fld_003",
+      "date": "2027-03-03",
+      "tempMinC": 18,
+      "tempMaxC": 24,
+      "rainMm": 45,
+      "rainProbPct": 90,
+      "humidityPct": 92
+    },
+    {
+      "id": "wf_003_20270304",
+      "fieldId": "fld_003",
+      "date": "2027-03-04",
+      "tempMinC": 17,
+      "tempMaxC": 25,
+      "rainMm": 20,
+      "rainProbPct": 75,
+      "humidityPct": 88
+    },
+    {
+      "id": "wf_003_20270305",
+      "fieldId": "fld_003",
+      "date": "2027-03-05",
+      "tempMinC": 17,
+      "tempMaxC": 27,
+      "rainMm": 3,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_003_20270306",
+      "fieldId": "fld_003",
+      "date": "2027-03-06",
+      "tempMinC": 16,
+      "tempMaxC": 28,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_003_20270307",
+      "fieldId": "fld_003",
+      "date": "2027-03-07",
+      "tempMinC": 16,
+      "tempMaxC": 28,
+      "rainMm": 5,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_004_20270301",
+      "fieldId": "fld_004",
+      "date": "2027-03-01",
+      "tempMinC": 17,
+      "tempMaxC": 27,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_004_20270302",
+      "fieldId": "fld_004",
+      "date": "2027-03-02",
+      "tempMinC": 18,
+      "tempMaxC": 24,
+      "rainMm": 11,
+      "rainProbPct": 65,
+      "humidityPct": 80
+    },
+    {
+      "id": "wf_004_20270303",
+      "fieldId": "fld_004",
+      "date": "2027-03-03",
+      "tempMinC": 18,
+      "tempMaxC": 24,
+      "rainMm": 31,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_004_20270304",
+      "fieldId": "fld_004",
+      "date": "2027-03-04",
+      "tempMinC": 17,
+      "tempMaxC": 25,
+      "rainMm": 17,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_004_20270305",
+      "fieldId": "fld_004",
+      "date": "2027-03-05",
+      "tempMinC": 17,
+      "tempMaxC": 27,
+      "rainMm": 3,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_004_20270306",
+      "fieldId": "fld_004",
+      "date": "2027-03-06",
+      "tempMinC": 15,
+      "tempMaxC": 28,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_004_20270307",
+      "fieldId": "fld_004",
+      "date": "2027-03-07",
+      "tempMinC": 17,
+      "tempMaxC": 28,
+      "rainMm": 5,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_005_20270301",
+      "fieldId": "fld_005",
+      "date": "2027-03-01",
+      "tempMinC": 17,
+      "tempMaxC": 27,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_005_20270302",
+      "fieldId": "fld_005",
+      "date": "2027-03-02",
+      "tempMinC": 17,
+      "tempMaxC": 25,
+      "rainMm": 14,
+      "rainProbPct": 65,
+      "humidityPct": 80
+    },
+    {
+      "id": "wf_005_20270303",
+      "fieldId": "fld_005",
+      "date": "2027-03-03",
+      "tempMinC": 18,
+      "tempMaxC": 24,
+      "rainMm": 26,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_005_20270304",
+      "fieldId": "fld_005",
+      "date": "2027-03-04",
+      "tempMinC": 17,
+      "tempMaxC": 26,
+      "rainMm": 17,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_005_20270305",
+      "fieldId": "fld_005",
+      "date": "2027-03-05",
+      "tempMinC": 18,
+      "tempMaxC": 26,
+      "rainMm": 3,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_005_20270306",
+      "fieldId": "fld_005",
+      "date": "2027-03-06",
+      "tempMinC": 16,
+      "tempMaxC": 28,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_005_20270307",
+      "fieldId": "fld_005",
+      "date": "2027-03-07",
+      "tempMinC": 17,
+      "tempMaxC": 27,
+      "rainMm": 4,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_006_20270301",
+      "fieldId": "fld_006",
+      "date": "2027-03-01",
+      "tempMinC": 18,
+      "tempMaxC": 27,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_006_20270302",
+      "fieldId": "fld_006",
+      "date": "2027-03-02",
+      "tempMinC": 19,
+      "tempMaxC": 25,
+      "rainMm": 13,
+      "rainProbPct": 65,
+      "humidityPct": 80
+    },
+    {
+      "id": "wf_006_20270303",
+      "fieldId": "fld_006",
+      "date": "2027-03-03",
+      "tempMinC": 17,
+      "tempMaxC": 24,
+      "rainMm": 24,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_006_20270304",
+      "fieldId": "fld_006",
+      "date": "2027-03-04",
+      "tempMinC": 17,
+      "tempMaxC": 25,
+      "rainMm": 15,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_006_20270305",
+      "fieldId": "fld_006",
+      "date": "2027-03-05",
+      "tempMinC": 17,
+      "tempMaxC": 28,
+      "rainMm": 3,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_006_20270306",
+      "fieldId": "fld_006",
+      "date": "2027-03-06",
+      "tempMinC": 16,
+      "tempMaxC": 27,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_006_20270307",
+      "fieldId": "fld_006",
+      "date": "2027-03-07",
+      "tempMinC": 16,
+      "tempMaxC": 28,
+      "rainMm": 4,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_007_20270301",
+      "fieldId": "fld_007",
+      "date": "2027-03-01",
+      "tempMinC": 16,
+      "tempMaxC": 26,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_007_20270302",
+      "fieldId": "fld_007",
+      "date": "2027-03-02",
+      "tempMinC": 18,
+      "tempMaxC": 25,
+      "rainMm": 14,
+      "rainProbPct": 65,
+      "humidityPct": 80
+    },
+    {
+      "id": "wf_007_20270303",
+      "fieldId": "fld_007",
+      "date": "2027-03-03",
+      "tempMinC": 17,
+      "tempMaxC": 23,
+      "rainMm": 26,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_007_20270304",
+      "fieldId": "fld_007",
+      "date": "2027-03-04",
+      "tempMinC": 18,
+      "tempMaxC": 25,
+      "rainMm": 15,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_007_20270305",
+      "fieldId": "fld_007",
+      "date": "2027-03-05",
+      "tempMinC": 18,
+      "tempMaxC": 27,
+      "rainMm": 2,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_007_20270306",
+      "fieldId": "fld_007",
+      "date": "2027-03-06",
+      "tempMinC": 16,
+      "tempMaxC": 29,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_007_20270307",
+      "fieldId": "fld_007",
+      "date": "2027-03-07",
+      "tempMinC": 17,
+      "tempMaxC": 27,
+      "rainMm": 3,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_008_20270301",
+      "fieldId": "fld_008",
+      "date": "2027-03-01",
+      "tempMinC": 17,
+      "tempMaxC": 27,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_008_20270302",
+      "fieldId": "fld_008",
+      "date": "2027-03-02",
+      "tempMinC": 17,
+      "tempMaxC": 26,
+      "rainMm": 12,
+      "rainProbPct": 65,
+      "humidityPct": 80
+    },
+    {
+      "id": "wf_008_20270303",
+      "fieldId": "fld_008",
+      "date": "2027-03-03",
+      "tempMinC": 19,
+      "tempMaxC": 23,
+      "rainMm": 35,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_008_20270304",
+      "fieldId": "fld_008",
+      "date": "2027-03-04",
+      "tempMinC": 18,
+      "tempMaxC": 24,
+      "rainMm": 15,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_008_20270305",
+      "fieldId": "fld_008",
+      "date": "2027-03-05",
+      "tempMinC": 17,
+      "tempMaxC": 26,
+      "rainMm": 3,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_008_20270306",
+      "fieldId": "fld_008",
+      "date": "2027-03-06",
+      "tempMinC": 15,
+      "tempMaxC": 27,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_008_20270307",
+      "fieldId": "fld_008",
+      "date": "2027-03-07",
+      "tempMinC": 17,
+      "tempMaxC": 27,
+      "rainMm": 4,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_009_20270301",
+      "fieldId": "fld_009",
+      "date": "2027-03-01",
+      "tempMinC": 16,
+      "tempMaxC": 27,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_009_20270302",
+      "fieldId": "fld_009",
+      "date": "2027-03-02",
+      "tempMinC": 17,
+      "tempMaxC": 24,
+      "rainMm": 12,
+      "rainProbPct": 65,
+      "humidityPct": 80
+    },
+    {
+      "id": "wf_009_20270303",
+      "fieldId": "fld_009",
+      "date": "2027-03-03",
+      "tempMinC": 18,
+      "tempMaxC": 25,
+      "rainMm": 25,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_009_20270304",
+      "fieldId": "fld_009",
+      "date": "2027-03-04",
+      "tempMinC": 18,
+      "tempMaxC": 26,
+      "rainMm": 14,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_009_20270305",
+      "fieldId": "fld_009",
+      "date": "2027-03-05",
+      "tempMinC": 18,
+      "tempMaxC": 28,
+      "rainMm": 3,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_009_20270306",
+      "fieldId": "fld_009",
+      "date": "2027-03-06",
+      "tempMinC": 16,
+      "tempMaxC": 28,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_009_20270307",
+      "fieldId": "fld_009",
+      "date": "2027-03-07",
+      "tempMinC": 17,
+      "tempMaxC": 28,
+      "rainMm": 4,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_010_20270301",
+      "fieldId": "fld_010",
+      "date": "2027-03-01",
+      "tempMinC": 17,
+      "tempMaxC": 27,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_010_20270302",
+      "fieldId": "fld_010",
+      "date": "2027-03-02",
+      "tempMinC": 19,
+      "tempMaxC": 25,
+      "rainMm": 13,
+      "rainProbPct": 65,
+      "humidityPct": 80
+    },
+    {
+      "id": "wf_010_20270303",
+      "fieldId": "fld_010",
+      "date": "2027-03-03",
+      "tempMinC": 18,
+      "tempMaxC": 25,
+      "rainMm": 29,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_010_20270304",
+      "fieldId": "fld_010",
+      "date": "2027-03-04",
+      "tempMinC": 18,
+      "tempMaxC": 26,
+      "rainMm": 17,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_010_20270305",
+      "fieldId": "fld_010",
+      "date": "2027-03-05",
+      "tempMinC": 16,
+      "tempMaxC": 27,
+      "rainMm": 3,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_010_20270306",
+      "fieldId": "fld_010",
+      "date": "2027-03-06",
+      "tempMinC": 17,
+      "tempMaxC": 29,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_010_20270307",
+      "fieldId": "fld_010",
+      "date": "2027-03-07",
+      "tempMinC": 17,
+      "tempMaxC": 28,
+      "rainMm": 4,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_011_20270301",
+      "fieldId": "fld_011",
+      "date": "2027-03-01",
+      "tempMinC": 16,
+      "tempMaxC": 27,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_011_20270302",
+      "fieldId": "fld_011",
+      "date": "2027-03-02",
+      "tempMinC": 19,
+      "tempMaxC": 25,
+      "rainMm": 10,
+      "rainProbPct": 65,
+      "humidityPct": 80
+    },
+    {
+      "id": "wf_011_20270303",
+      "fieldId": "fld_011",
+      "date": "2027-03-03",
+      "tempMinC": 18,
+      "tempMaxC": 25,
+      "rainMm": 26,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_011_20270304",
+      "fieldId": "fld_011",
+      "date": "2027-03-04",
+      "tempMinC": 16,
+      "tempMaxC": 24,
+      "rainMm": 16,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_011_20270305",
+      "fieldId": "fld_011",
+      "date": "2027-03-05",
+      "tempMinC": 18,
+      "tempMaxC": 27,
+      "rainMm": 3,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_011_20270306",
+      "fieldId": "fld_011",
+      "date": "2027-03-06",
+      "tempMinC": 16,
+      "tempMaxC": 28,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_011_20270307",
+      "fieldId": "fld_011",
+      "date": "2027-03-07",
+      "tempMinC": 16,
+      "tempMaxC": 28,
+      "rainMm": 5,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_012_20270301",
+      "fieldId": "fld_012",
+      "date": "2027-03-01",
+      "tempMinC": 17,
+      "tempMaxC": 27,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_012_20270302",
+      "fieldId": "fld_012",
+      "date": "2027-03-02",
+      "tempMinC": 18,
+      "tempMaxC": 24,
+      "rainMm": 14,
+      "rainProbPct": 65,
+      "humidityPct": 80
+    },
+    {
+      "id": "wf_012_20270303",
+      "fieldId": "fld_012",
+      "date": "2027-03-03",
+      "tempMinC": 17,
+      "tempMaxC": 24,
+      "rainMm": 35,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_012_20270304",
+      "fieldId": "fld_012",
+      "date": "2027-03-04",
+      "tempMinC": 16,
+      "tempMaxC": 25,
+      "rainMm": 17,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_012_20270305",
+      "fieldId": "fld_012",
+      "date": "2027-03-05",
+      "tempMinC": 17,
+      "tempMaxC": 27,
+      "rainMm": 3,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_012_20270306",
+      "fieldId": "fld_012",
+      "date": "2027-03-06",
+      "tempMinC": 16,
+      "tempMaxC": 28,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_012_20270307",
+      "fieldId": "fld_012",
+      "date": "2027-03-07",
+      "tempMinC": 17,
+      "tempMaxC": 27,
+      "rainMm": 4,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_013_20270301",
+      "fieldId": "fld_013",
+      "date": "2027-03-01",
+      "tempMinC": 17,
+      "tempMaxC": 27,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_013_20270302",
+      "fieldId": "fld_013",
+      "date": "2027-03-02",
+      "tempMinC": 17,
+      "tempMaxC": 25,
+      "rainMm": 10,
+      "rainProbPct": 65,
+      "humidityPct": 80
+    },
+    {
+      "id": "wf_013_20270303",
+      "fieldId": "fld_013",
+      "date": "2027-03-03",
+      "tempMinC": 18,
+      "tempMaxC": 24,
+      "rainMm": 27,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_013_20270304",
+      "fieldId": "fld_013",
+      "date": "2027-03-04",
+      "tempMinC": 18,
+      "tempMaxC": 24,
+      "rainMm": 17,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_013_20270305",
+      "fieldId": "fld_013",
+      "date": "2027-03-05",
+      "tempMinC": 17,
+      "tempMaxC": 27,
+      "rainMm": 4,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_013_20270306",
+      "fieldId": "fld_013",
+      "date": "2027-03-06",
+      "tempMinC": 16,
+      "tempMaxC": 27,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_013_20270307",
+      "fieldId": "fld_013",
+      "date": "2027-03-07",
+      "tempMinC": 17,
+      "tempMaxC": 28,
+      "rainMm": 4,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_014_20270301",
+      "fieldId": "fld_014",
+      "date": "2027-03-01",
+      "tempMinC": 16,
+      "tempMaxC": 28,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_014_20270302",
+      "fieldId": "fld_014",
+      "date": "2027-03-02",
+      "tempMinC": 19,
+      "tempMaxC": 25,
+      "rainMm": 14,
+      "rainProbPct": 65,
+      "humidityPct": 80
+    },
+    {
+      "id": "wf_014_20270303",
+      "fieldId": "fld_014",
+      "date": "2027-03-03",
+      "tempMinC": 17,
+      "tempMaxC": 25,
+      "rainMm": 26,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_014_20270304",
+      "fieldId": "fld_014",
+      "date": "2027-03-04",
+      "tempMinC": 17,
+      "tempMaxC": 25,
+      "rainMm": 18,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_014_20270305",
+      "fieldId": "fld_014",
+      "date": "2027-03-05",
+      "tempMinC": 16,
+      "tempMaxC": 27,
+      "rainMm": 3,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_014_20270306",
+      "fieldId": "fld_014",
+      "date": "2027-03-06",
+      "tempMinC": 16,
+      "tempMaxC": 29,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_014_20270307",
+      "fieldId": "fld_014",
+      "date": "2027-03-07",
+      "tempMinC": 16,
+      "tempMaxC": 27,
+      "rainMm": 4,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_015_20270301",
+      "fieldId": "fld_015",
+      "date": "2027-03-01",
+      "tempMinC": 18,
+      "tempMaxC": 27,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_015_20270302",
+      "fieldId": "fld_015",
+      "date": "2027-03-02",
+      "tempMinC": 19,
+      "tempMaxC": 25,
+      "rainMm": 11,
+      "rainProbPct": 65,
+      "humidityPct": 80
+    },
+    {
+      "id": "wf_015_20270303",
+      "fieldId": "fld_015",
+      "date": "2027-03-03",
+      "tempMinC": 18,
+      "tempMaxC": 23,
+      "rainMm": 32,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_015_20270304",
+      "fieldId": "fld_015",
+      "date": "2027-03-04",
+      "tempMinC": 17,
+      "tempMaxC": 25,
+      "rainMm": 18,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_015_20270305",
+      "fieldId": "fld_015",
+      "date": "2027-03-05",
+      "tempMinC": 17,
+      "tempMaxC": 28,
+      "rainMm": 3,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_015_20270306",
+      "fieldId": "fld_015",
+      "date": "2027-03-06",
+      "tempMinC": 17,
+      "tempMaxC": 29,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_015_20270307",
+      "fieldId": "fld_015",
+      "date": "2027-03-07",
+      "tempMinC": 18,
+      "tempMaxC": 27,
+      "rainMm": 3,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_016_20270301",
+      "fieldId": "fld_016",
+      "date": "2027-03-01",
+      "tempMinC": 16,
+      "tempMaxC": 26,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_016_20270302",
+      "fieldId": "fld_016",
+      "date": "2027-03-02",
+      "tempMinC": 17,
+      "tempMaxC": 24,
+      "rainMm": 10,
+      "rainProbPct": 65,
+      "humidityPct": 80
+    },
+    {
+      "id": "wf_016_20270303",
+      "fieldId": "fld_016",
+      "date": "2027-03-03",
+      "tempMinC": 18,
+      "tempMaxC": 24,
+      "rainMm": 31,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_016_20270304",
+      "fieldId": "fld_016",
+      "date": "2027-03-04",
+      "tempMinC": 18,
+      "tempMaxC": 25,
+      "rainMm": 18,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_016_20270305",
+      "fieldId": "fld_016",
+      "date": "2027-03-05",
+      "tempMinC": 17,
+      "tempMaxC": 28,
+      "rainMm": 3,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_016_20270306",
+      "fieldId": "fld_016",
+      "date": "2027-03-06",
+      "tempMinC": 17,
+      "tempMaxC": 28,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_016_20270307",
+      "fieldId": "fld_016",
+      "date": "2027-03-07",
+      "tempMinC": 17,
+      "tempMaxC": 28,
+      "rainMm": 3,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_017_20270301",
+      "fieldId": "fld_017",
+      "date": "2027-03-01",
+      "tempMinC": 18,
+      "tempMaxC": 26,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_017_20270302",
+      "fieldId": "fld_017",
+      "date": "2027-03-02",
+      "tempMinC": 19,
+      "tempMaxC": 25,
+      "rainMm": 11,
+      "rainProbPct": 65,
+      "humidityPct": 80
+    },
+    {
+      "id": "wf_017_20270303",
+      "fieldId": "fld_017",
+      "date": "2027-03-03",
+      "tempMinC": 18,
+      "tempMaxC": 25,
+      "rainMm": 31,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_017_20270304",
+      "fieldId": "fld_017",
+      "date": "2027-03-04",
+      "tempMinC": 17,
+      "tempMaxC": 25,
+      "rainMm": 18,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_017_20270305",
+      "fieldId": "fld_017",
+      "date": "2027-03-05",
+      "tempMinC": 17,
+      "tempMaxC": 26,
+      "rainMm": 4,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_017_20270306",
+      "fieldId": "fld_017",
+      "date": "2027-03-06",
+      "tempMinC": 16,
+      "tempMaxC": 28,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_017_20270307",
+      "fieldId": "fld_017",
+      "date": "2027-03-07",
+      "tempMinC": 18,
+      "tempMaxC": 27,
+      "rainMm": 4,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_018_20270301",
+      "fieldId": "fld_018",
+      "date": "2027-03-01",
+      "tempMinC": 16,
+      "tempMaxC": 27,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_018_20270302",
+      "fieldId": "fld_018",
+      "date": "2027-03-02",
+      "tempMinC": 17,
+      "tempMaxC": 24,
+      "rainMm": 12,
+      "rainProbPct": 65,
+      "humidityPct": 80
+    },
+    {
+      "id": "wf_018_20270303",
+      "fieldId": "fld_018",
+      "date": "2027-03-03",
+      "tempMinC": 19,
+      "tempMaxC": 24,
+      "rainMm": 36,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_018_20270304",
+      "fieldId": "fld_018",
+      "date": "2027-03-04",
+      "tempMinC": 17,
+      "tempMaxC": 25,
+      "rainMm": 18,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_018_20270305",
+      "fieldId": "fld_018",
+      "date": "2027-03-05",
+      "tempMinC": 16,
+      "tempMaxC": 27,
+      "rainMm": 3,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_018_20270306",
+      "fieldId": "fld_018",
+      "date": "2027-03-06",
+      "tempMinC": 15,
+      "tempMaxC": 28,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_018_20270307",
+      "fieldId": "fld_018",
+      "date": "2027-03-07",
+      "tempMinC": 17,
+      "tempMaxC": 28,
+      "rainMm": 4,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_019_20270301",
+      "fieldId": "fld_019",
+      "date": "2027-03-01",
+      "tempMinC": 17,
+      "tempMaxC": 27,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_019_20270302",
+      "fieldId": "fld_019",
+      "date": "2027-03-02",
+      "tempMinC": 19,
+      "tempMaxC": 25,
+      "rainMm": 11,
+      "rainProbPct": 65,
+      "humidityPct": 80
+    },
+    {
+      "id": "wf_019_20270303",
+      "fieldId": "fld_019",
+      "date": "2027-03-03",
+      "tempMinC": 19,
+      "tempMaxC": 25,
+      "rainMm": 31,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_019_20270304",
+      "fieldId": "fld_019",
+      "date": "2027-03-04",
+      "tempMinC": 16,
+      "tempMaxC": 26,
+      "rainMm": 16,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_019_20270305",
+      "fieldId": "fld_019",
+      "date": "2027-03-05",
+      "tempMinC": 18,
+      "tempMaxC": 26,
+      "rainMm": 3,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_019_20270306",
+      "fieldId": "fld_019",
+      "date": "2027-03-06",
+      "tempMinC": 16,
+      "tempMaxC": 28,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_019_20270307",
+      "fieldId": "fld_019",
+      "date": "2027-03-07",
+      "tempMinC": 17,
+      "tempMaxC": 29,
+      "rainMm": 4,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_020_20270301",
+      "fieldId": "fld_020",
+      "date": "2027-03-01",
+      "tempMinC": 16,
+      "tempMaxC": 27,
+      "rainMm": 2,
+      "rainProbPct": 30,
+      "humidityPct": 70
+    },
+    {
+      "id": "wf_020_20270302",
+      "fieldId": "fld_020",
+      "date": "2027-03-02",
+      "tempMinC": 17,
+      "tempMaxC": 25,
+      "rainMm": 12,
+      "rainProbPct": 65,
+      "humidityPct": 80
+    },
+    {
+      "id": "wf_020_20270303",
+      "fieldId": "fld_020",
+      "date": "2027-03-03",
+      "tempMinC": 17,
+      "tempMaxC": 23,
+      "rainMm": 36,
+      "rainProbPct": 85,
+      "humidityPct": 90
+    },
+    {
+      "id": "wf_020_20270304",
+      "fieldId": "fld_020",
+      "date": "2027-03-04",
+      "tempMinC": 16,
+      "tempMaxC": 25,
+      "rainMm": 15,
+      "rainProbPct": 70,
+      "humidityPct": 85
+    },
+    {
+      "id": "wf_020_20270305",
+      "fieldId": "fld_020",
+      "date": "2027-03-05",
+      "tempMinC": 17,
+      "tempMaxC": 28,
+      "rainMm": 3,
+      "rainProbPct": 35,
+      "humidityPct": 72
+    },
+    {
+      "id": "wf_020_20270306",
+      "fieldId": "fld_020",
+      "date": "2027-03-06",
+      "tempMinC": 16,
+      "tempMaxC": 28,
+      "rainMm": 0,
+      "rainProbPct": 20,
+      "humidityPct": 65
+    },
+    {
+      "id": "wf_020_20270307",
+      "fieldId": "fld_020",
+      "date": "2027-03-07",
+      "tempMinC": 18,
+      "tempMaxC": 29,
+      "rainMm": 4,
+      "rainProbPct": 40,
+      "humidityPct": 70
+    }
+  ],
+  "droneCaptures": [
+    {
+      "id": "dc_001",
+      "fieldId": "fld_001",
+      "capturedAt": "2027-02-28T09:30:00.000Z",
+      "imageUrl": "/drone/ksg-001.svg",
+      "ndviMean": 0.52,
+      "findings": "Leaf damage consistent with fall armyworm on ~30% of plants, concentrated on the eastern edge."
+    },
+    {
+      "id": "dc_003",
+      "fieldId": "fld_003",
+      "capturedAt": "2027-02-27T09:30:00.000Z",
+      "imageUrl": "/drone/ksg-003.svg",
+      "ndviMean": 0.41,
+      "findings": "Canopy senescence across 80% of the field, consistent with maturity."
+    },
+    {
+      "id": "dc_004",
+      "fieldId": "fld_004",
+      "capturedAt": "2027-02-27T10:00:00.000Z",
+      "imageUrl": "/drone/ksg-004.svg",
+      "ndviMean": 0.58,
+      "findings": "Lesions on lower leaves in the low-lying southern half of the field."
+    },
+    {
+      "id": "dc_006",
+      "fieldId": "fld_006",
+      "capturedAt": "2027-02-27T11:00:00.000Z",
+      "imageUrl": "/drone/ksg-006.svg",
+      "ndviMean": 0.63,
+      "findings": "Small tan-brown spots on lower leaves in the centre of the field."
+    },
+    {
+      "id": "dc_007",
+      "fieldId": "fld_007",
+      "capturedAt": "2027-02-26T10:00:00.000Z",
+      "imageUrl": "/drone/ksg-007.svg",
+      "ndviMean": 0.49,
+      "findings": "Angular leaf lesions on ~15% of leaves; pods turning yellow."
+    },
+    {
+      "id": "dc_010",
+      "fieldId": "fld_010",
+      "capturedAt": "2027-02-28T10:00:00.000Z",
+      "imageUrl": "/drone/ksg-010.svg",
+      "ndviMean": 0.55,
+      "findings": "Lower leaves turning yellow-green across the field (ripening)."
+    },
+    {
+      "id": "dc_011",
+      "fieldId": "fld_011",
+      "capturedAt": "2027-02-27T09:00:00.000Z",
+      "imageUrl": "/drone/ksg-011.svg",
+      "ndviMean": 0.5,
+      "findings": "Patches of stunted plants with mottled yellow leaves."
+    },
+    {
+      "id": "dc_012",
+      "fieldId": "fld_012",
+      "capturedAt": "2027-02-28T11:00:00.000Z",
+      "imageUrl": "/drone/ksg-012.svg",
+      "ndviMean": 0.38,
+      "findings": "Most of the canopy has turned brown (stage R7)."
+    },
+    {
+      "id": "dc_015",
+      "fieldId": "fld_015",
+      "capturedAt": "2027-02-26T09:00:00.000Z",
+      "imageUrl": "/drone/ksg-015.svg",
+      "ndviMean": 0.74,
+      "findings": "Uniform, healthy canopy."
+    },
+    {
+      "id": "dc_016",
+      "fieldId": "fld_016",
+      "capturedAt": "2027-02-26T11:00:00.000Z",
+      "imageUrl": "/drone/ksg-016.svg",
+      "ndviMean": 0.71,
+      "findings": "Uniform, healthy canopy."
+    }
+  ]
+}
