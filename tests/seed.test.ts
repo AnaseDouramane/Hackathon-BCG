@@ -11,7 +11,7 @@ const aggregates = buildAggregates(seed);
 
 describe("seed.json", () => {
   it("is valid and every relation resolves", () => {
-    expect(seed.fields).toHaveLength(20);
+    expect(seed.fields).toHaveLength(600);
     const alertIds = new Set(seed.alerts.map((a) => a.id));
     for (const action of seed.actions) expect(alertIds.has(action.alertId)).toBe(true);
     for (const agg of aggregates) expect(agg.planting).not.toBeNull();
@@ -22,7 +22,7 @@ describe("seed.json", () => {
       aggregates.map((a) => a.alerts),
       seed.demoNow,
     );
-    expect(stats).toMatchObject({ urgent: 3, disease: 6, fertilizer: 5, maturity: 4, ok: 7, totalFields: 20 });
+    expect(stats).toMatchObject({ urgent: 8, disease: 25, fertilizer: 22, maturity: 18, ok: 540, totalFields: 600 });
   });
 
   it("follows the honesty rule: sensor disease alerts describe conditions", () => {
@@ -34,16 +34,17 @@ describe("seed.json", () => {
 });
 
 describe("services on the memory repository", () => {
-  it("lists urgent fields in priority order", async () => {
+  it("lists urgent fields in priority order, demo scenarios first", async () => {
     const urgent = await listFields({ category: "urgent" });
-    expect(urgent.map((f) => f.code)).toEqual(["KSG-001", "KSG-003", "KSG-002"]);
+    expect(urgent).toHaveLength(8);
+    expect(urgent.slice(0, 3).map((f) => f.code)).toEqual(["KSG-001", "KSG-003", "KSG-002"]);
     expect(urgent.every((f) => f.lampColors[0] === "RED")).toBe(true);
   });
 
   it("list lengths match the KPI numbers", async () => {
-    expect(await listFields({ category: "disease" })).toHaveLength(6);
-    expect(await listFields({ category: "fertilizer" })).toHaveLength(5);
-    expect(await listFields({ category: "maturity" })).toHaveLength(4);
+    expect(await listFields({ category: "disease" })).toHaveLength(25);
+    expect(await listFields({ category: "fertilizer" })).toHaveLength(22);
+    expect(await listFields({ category: "maturity" })).toHaveLength(18);
   });
 
   it("uses the category's own alert as topAlert", async () => {
