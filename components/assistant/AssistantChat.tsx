@@ -10,7 +10,7 @@ type Entry = ChatMessage & { links?: ChatResponse["links"] };
 const SUGGESTIONS = [
   "Where should I go first today?",
   "Which fields have disease problems?",
-  "What should I do on KSG-003?",
+  "What should I do on F01?",
   "What do the lamp colours mean?",
 ];
 
@@ -19,12 +19,13 @@ const WELCOME: Entry = {
   content: "Hi Felix! Ask me about your fields: what is urgent, what to do on a field, or what a lamp colour means.",
 };
 
-/** Assistente della dashboard (spec §8.1). Placeholder finché Claude non è collegato. */
+/** Assistente della dashboard (spec §8.1). Risponde Claude se collegato, altrimenti il placeholder. */
 export function AssistantChat() {
   const [open, setOpen] = useState(false);
   const [entries, setEntries] = useState<Entry[]>([WELCOME]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [mode, setMode] = useState<ChatResponse["mode"] | null>(null);
   const listRef = useRef<HTMLOListElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -56,6 +57,7 @@ export function AssistantChat() {
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = (await res.json()) as ChatResponse;
+      setMode(data.mode);
       setEntries((e) => [...e, { role: "assistant", content: data.reply, links: data.links }]);
     } catch {
       setEntries((e) => [...e, { role: "assistant", content: "Sorry, I couldn't answer right now. Please try again." }]);
@@ -82,7 +84,13 @@ export function AssistantChat() {
               <h2 className="flex items-center gap-1.5 font-semibold text-ink">
                 <Sparkles size={16} className="text-disease" aria-hidden /> Field assistant
               </h2>
-              <p className="text-xs text-muted">Preview · Claude not connected yet</p>
+              <p className="text-xs text-muted">
+                {mode === "claude"
+                  ? "Powered by Claude · check advice in the field"
+                  : mode === "placeholder"
+                    ? "Preview · Claude not connected"
+                    : "Ask about urgent fields, actions or lamp colours"}
+              </p>
             </div>
             <button
               type="button"

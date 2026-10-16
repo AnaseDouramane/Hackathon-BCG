@@ -53,9 +53,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full flex-col">
         <Header />
         <div className="mx-auto w-full max-w-[1400px] flex-1 px-4 py-4">{children}</div>
-        <footer className="px-4 pb-4 text-center text-xs text-muted">
-          Demo with fictional data · Advice is simplified and must be validated by an agronomist
-        </footer>
       </body>
     </html>
   );
