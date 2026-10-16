@@ -8,7 +8,7 @@ export const SeveritySchema = z.enum(["LOW", "MEDIUM", "HIGH", "CRITICAL"]);
 export const AlertSourceSchema = z.enum(["SENSOR", "DRONE", "WEATHER", "MANUAL"]);
 export const AlertStatusSchema = z.enum(["OPEN", "RESOLVED"]);
 export const LampColorSchema = z.enum(["RED", "PURPLE", "BLUE", "AMBER", "GREEN"]);
-export const CropCodeSchema = z.enum(["MAIZE", "SOYBEAN", "BEANS", "TOBACCO", "GROUNDNUT"]);
+export const CropCodeSchema = z.enum(["MAIZE", "SOYBEAN", "BEANS", "CHILI"]);
 export const GrowthStageSchema = z.enum(["EMERGENCE", "VEGETATIVE", "FLOWERING", "FRUITING", "MATURITY"]);
 export const PlantingStatusSchema = z.enum(["ACTIVE", "HARVESTED"]);
 

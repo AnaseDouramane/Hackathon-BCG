@@ -1,5 +1,5 @@
 // Assistente "placeholder": risponde con regole semplici sui dati reali dell'app,
-// finché Claude non è collegato (vedi lib/assistant/claude.ts).
+// quando Claude non è collegato o non risponde (vedi lib/assistant/claude.ts).
 import type { CategoryFilter, ChatResponse, FieldSummary } from "@/lib/contract/schemas";
 import { formatDue } from "@/lib/domain/format";
 import { getNow } from "@/lib/now";
@@ -11,7 +11,7 @@ const TOP = 3;
 
 const fieldLink = (f: { id: string; code: string }) => ({ label: `Open ${f.code}`, href: `/fields/${f.id}` });
 
-/** "KSG-001 Kaluluma West (Maize) — Fall armyworm outbreak → Scout 20 plants… (due today)" */
+/** "F13 Field 13 (Maize) — Fall armyworm outbreak → Scout 20 plants… (due today)" */
 async function describeTopFields(fields: FieldSummary[]): Promise<string[]> {
   const now = getNow();
   return Promise.all(
@@ -36,9 +36,8 @@ async function categoryAnswer(category: CategoryFilter, label: string): Promise<
 }
 
 async function fieldAnswer(code: string): Promise<Reply> {
-  const id = `fld_${code.padStart(3, "0")}`;
-  const field = await getFieldDetail(id);
-  if (!field) return { reply: `I can't find field KSG-${code.padStart(3, "0")}.`, links: [] };
+  const field = await getFieldDetail(code);
+  if (!field) return { reply: `I can't find field ${code}.`, links: [] };
   const now = getNow();
   const header = `${field.code} ${field.name} — ${field.crop?.name ?? "no crop"}, ${field.areaHa} ha, farmer ${field.farmer.name} (${field.farmer.phone}).`;
   if (field.alerts.length === 0) return { reply: `${header}\nNo open issues: the lamp is green.`, links: [fieldLink(field)] };
@@ -66,7 +65,7 @@ const HELP =
   "I'm a preview of the field assistant. Try asking:\n" +
   "• Where should I go first today?\n" +
   "• Which fields have disease problems?\n" +
-  "• What should I do on KSG-003?\n" +
+  "• What should I do on F01?\n" +
   "• What do the lamp colours mean?";
 
 const LAMP =
@@ -75,7 +74,9 @@ const LAMP =
 
 export async function answerPlaceholder(question: string): Promise<Reply> {
   const q = question.toLowerCase();
-  const code = question.match(/ksg[-\s]?(\d{1,3})/i)?.[1];
+  // codici dei campi come nel db: F01…F600 (accetta anche "f1", "F 01")
+  const number = question.match(/\bF[-\s]?0*(\d{1,3})\b/i)?.[1];
+  const code = number ? `F${number.padStart(2, "0")}` : undefined;
 
   if (code) return fieldAnswer(code);
   if (/lamp|light|colou?r/.test(q)) return { reply: LAMP, links: [] };

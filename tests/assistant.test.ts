@@ -5,14 +5,14 @@ describe("assistant placeholder", () => {
   it("answers 'where first' with the urgent fields in priority order", async () => {
     const answer = await answerPlaceholder("Where should I go first today?");
     expect(answer.reply).toContain("8 fields need action within 72 hours");
-    expect(answer.reply.indexOf("KSG-001")).toBeLessThan(answer.reply.indexOf("KSG-003"));
-    expect(answer.links[0]).toEqual({ label: "Open KSG-001", href: "/fields/fld_001" });
+    expect(answer.reply.indexOf("F13")).toBeLessThan(answer.reply.indexOf("F01"));
+    expect(answer.links[0]).toEqual({ label: "Open F13", href: "/fields/F13" });
   });
 
   it("answers about a specific field with its first actions", async () => {
-    const answer = await answerPlaceholder("What should I do on KSG-003?");
-    expect(answer.reply).toContain("Lift groundnuts within 48 hours");
-    expect(answer.links).toEqual([{ label: "Open KSG-003", href: "/fields/fld_003" }]);
+    const answer = await answerPlaceholder("What should I do on f1?");
+    expect(answer.reply).toContain("Pick all red chillies within 48 hours");
+    expect(answer.links).toEqual([{ label: "Open F01", href: "/fields/F01" }]);
   });
 
   it("explains the lamp colours and falls back to help", async () => {
