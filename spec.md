@@ -378,7 +378,8 @@ Restituisce la lista dei campi già **ordinata per priorità** (§6.4). Si usa s
 ```
 
 Note:
-- `topAlert` è `null` se il campo non ha alert aperti.
+- `topAlert` è l'alert più prioritario **tra quelli che rispettano il filtro `category`** (con `urgent`: tra gli alert urgenti; senza filtro: tra tutti gli alert aperti). Così la lista di una categoria mostra sempre l'alert di quella categoria. È `null` se il campo non ha alert aperti.
+- `topAlert` contiene anche `source`, per mostrare la fonte nella lista.
 - `boundary` è un **GeoJSON Polygon** e le coordinate sono `[lng, lat]`. Attenzione: Leaflet usa invece `[lat, lng]`, quindi la conversione va fatta nel componente mappa.
 - Un `category` non valido restituisce **400**.
 
@@ -408,6 +409,8 @@ Restituisce tutto ciò che serve alla pagina di dettaglio: i campi di `FieldSumm
       "dueAt": "2027-03-03T00:00:00Z",
       "category": "MATURITY",
       "source": "WEATHER",
+      "confidence": 0.85,
+      "isUrgent": true,
       "done": false
     }
   ],
@@ -432,7 +435,8 @@ Restituisce tutto ciò che serve alla pagina di dettaglio: i campi di `FieldSumm
 }
 ```
 
-- `actions` è già ordinato (§6.4). `latestSensorReading` e `latestDroneCapture` possono essere `null`.
+- `actions` è già ordinato (§6.4). `category`, `source` e `confidence` di ogni azione vengono dal suo alert. `isUrgent` è `true` se l'alert è urgente **e** la scadenza dell'azione (se c'è) cade entro 72 h.
+- `latestSensorReading` e `latestDroneCapture` possono essere `null`.
 - `weather` contiene sempre 5 giorni, a partire da "adesso".
 - Se l'id non esiste, la risposta è **404**: `{ "error": "FIELD_NOT_FOUND", "message": "Field fld_999 not found" }`.
 
@@ -778,7 +782,7 @@ Il file `.env.example` (committato) elenca le variabili; i valori veri stanno ne
 | Variabile | Dove | Esempio | Note |
 |---|---|---|---|
 | `DATA_SOURCE` | server | `memory` | `memory` = `data/seed.json` (fase 1 e piano B); `db` = Azure PostgreSQL (fase 2) |
-| `DEMO_NOW` | server | `2027-03-01T05:00:00Z` | "Adesso" della demo; se manca si usa l'ora reale. Le pagine ricevono il valore dal server, quindi non serve una variabile `NEXT_PUBLIC_` |
+| `DEMO_NOW` | server | `2027-03-01T05:00:00Z` | "Adesso" della demo; se manca si usa `demoNow` di `data/seed.json`. Le pagine ricevono il valore dal server, quindi non serve una variabile `NEXT_PUBLIC_` |
 | `DATABASE_URL` | server, solo con `db` | vedi `docs/database.md` | Connessione dell'app |
 | `DIRECT_URL` | server, solo con `db` | vedi `docs/database.md` | Connessione per le migrazioni |
 | `SHADOW_DATABASE_URL` | solo #4 in locale | vedi `docs/database.md` | DB d'appoggio per `prisma migrate dev` |
