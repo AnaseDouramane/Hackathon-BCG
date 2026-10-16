@@ -1,3 +1,4 @@
+import { AssistantChat } from "@/components/assistant/AssistantChat";
 import { KpiRow } from "@/components/kpi/KpiRow";
 import { TodayPriorities } from "@/components/kpi/TodayPriorities";
 import { DashboardMap } from "@/components/map/DashboardMap";
@@ -16,6 +17,7 @@ export default async function DashboardPage() {
         <DashboardMap fields={fields} nowIso={now.toISOString()} />
         <TodayPriorities fields={fields} now={now} />
       </div>
+      <AssistantChat />
     </main>
   );
 }

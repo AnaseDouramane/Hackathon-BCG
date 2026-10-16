@@ -170,6 +170,28 @@ export const FieldDetailSchema = FieldSummarySchema.extend({
 });
 export type FieldDetail = z.infer<typeof FieldDetailSchema>;
 
+// ─── POST /api/chat (assistente) ─────────────────────────────────────────
+
+export const ChatMessageSchema = z.object({
+  role: z.enum(["user", "assistant"]),
+  content: z.string().min(1).max(2000),
+});
+export type ChatMessage = z.infer<typeof ChatMessageSchema>;
+
+export const ChatRequestSchema = z.object({
+  /** Conversazione completa, l'ultimo messaggio è la domanda dell'utente. */
+  messages: z.array(ChatMessageSchema).min(1).max(30),
+});
+
+export const ChatResponseSchema = z.object({
+  reply: z.string(),
+  /** Link ai campi citati nella risposta. */
+  links: z.array(z.object({ label: z.string(), href: z.string() })),
+  /** "placeholder" finché Claude non è collegato (spec §7.7). */
+  mode: z.enum(["placeholder", "claude"]),
+});
+export type ChatResponse = z.infer<typeof ChatResponseSchema>;
+
 // ─── Errori ──────────────────────────────────────────────────────────────
 
 export const ApiErrorSchema = z.object({
