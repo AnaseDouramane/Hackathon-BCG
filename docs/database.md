@@ -716,11 +716,11 @@ UNION ALL SELECT 'actions', count(*) FROM actions;
 SELECT category, count(DISTINCT field_id) AS campi
 FROM alerts WHERE status = 'OPEN'
 GROUP BY category;
--- Attesi (spec §9.3): DISEASE 6 · FERTILIZER 5 · MATURITY 4
+-- Attesi (spec §9.3): fields 600 · DISEASE 25 · FERTILIZER 22 · MATURITY 18
 ```
 
 - [ ] `felix_app` **non** può cambiare la struttura: `CREATE TABLE test (id int);` collegati come `felix_app` deve dare *permission denied*.
-- [ ] Con `DATA_SOURCE=db`, prima in locale e poi su una Preview di Vercel, `GET /api/stats` restituisce **esattamente** `urgent 3 · disease 6 · fertilizer 5 · maturity 4 · ok 7 · totalFields 20`, gli stessi numeri di `DATA_SOURCE=memory`.
+- [ ] Con `DATA_SOURCE=db`, prima in locale e poi su una Preview di Vercel, `GET /api/stats` restituisce **esattamente** `urgent 8 · disease 25 · fertilizer 22 · maturity 18 · ok 540 · totalFields 600`, gli stessi numeri di `DATA_SOURCE=memory`.
 - [ ] Il test Vitest di confronto tra `MemoryRepository` e `PrismaRepository` (spec §6.6) passa.
 
 ---

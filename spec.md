@@ -30,7 +30,7 @@
 
 ## 1. Il problema e l'utente
 
-**Felix Field** è un *Agricultural Extension Officer* nel distretto di **Kasungu (Malawi)**. Segue decine di campi di piccoli agricoltori e deve dire loro cosa fare. I tre problemi che ci ha portato:
+**Felix Field** è un *Agricultural Extension Officer* nel distretto di **Kasungu (Malawi)**. Segue circa **600 campi** di piccoli agricoltori, raggruppati in villaggi, e deve dire loro cosa fare. I tre problemi che ci ha portato:
 
 | # | Problema | Cosa succede oggi | Cosa vogliamo dargli |
 |---|---|---|---|
@@ -55,6 +55,7 @@
 - Pagina dettaglio campo: le azioni da fare in ordine di priorità, i dati di sensori, meteo e drone, la timeline della coltura e lo stato del lampione (simulato).
 - Dati letti da un **archivio in memoria** (fase 1), poi da un **DB PostgreSQL su Azure** (fase 2), senza modificare le schermate.
 - Diagnosi automatiche etichettate come **"Suspected"** con un livello di **confidenza** (§6.7).
+- Un **assistente in chat** sulla dashboard per fare domande su problemi e priorità. Per ora è un **placeholder** a regole; poi verrà collegato a Claude (§7.7).
 
 **Fuori scope (solo roadmap)**
 - Integrazione con sensori, droni e lampioni fisici.
@@ -139,13 +140,15 @@ Hackathon-BCG/
 │   ├── loading.tsx · error.tsx · not-found.tsx
 │   └── api/
 │       ├── stats/route.ts          ← GET /api/stats
+│       ├── chat/route.ts           ← POST /api/chat (assistente)
 │       └── fields/
 │           ├── route.ts            ← GET /api/fields
 │           └── [id]/route.ts       ← GET /api/fields/:id
 │
 ├── components/
-│   ├── map/                        ← FieldMap (client), FieldPolygon, MapLegend, MapFilters
-│   ├── kpi/                        ← KpiCard, KpiRow
+│   ├── map/                        ← FieldMap (client), DashboardMap, MapLegend, MapFilters
+│   ├── kpi/                        ← KpiCard, KpiRow, TodayPriorities
+│   ├── assistant/                  ← AssistantChat (pulsante + pannello chat)
 │   ├── issues/                     ← IssueRow, CropFilter
 │   ├── field/                      ← ActionList, SensorPanel, WeatherStrip, DronePanel, CropTimeline, Lamp
 │   └── ui/                         ← Card, Badge, SeverityBadge, ConfidenceBadge, CategoryIcon, ErrorState
@@ -167,8 +170,11 @@ Hackathon-BCG/
 │   │   ├── memory-repository.ts    ← fase 1: legge data/seed.json
 │   │   ├── prisma-repository.ts    ← fase 2: legge da Azure PostgreSQL
 │   │   └── index.ts                ← getRepository(): sceglie in base a DATA_SOURCE
-│   └── services/
-│       └── fields.ts               ← getStats(), listFields(), getFieldDetail()
+│   ├── services/
+│   │   └── fields.ts               ← getStats(), listFields(), getFieldDetail()
+│   └── assistant/
+│       ├── placeholder.ts          ← risposte a regole sui dati (oggi)
+│       └── claude.ts               ← prompt, contesto e punto di aggancio a Claude (dopo)
 │
 ├── data/
 │   └── seed.json                   ← dati demo (vedi §9)
@@ -326,12 +332,12 @@ Restituisce i numeri delle 4 statistiche della dashboard.
 
 ```json
 {
-  "urgent": 3,
-  "disease": 6,
-  "fertilizer": 5,
-  "maturity": 4,
-  "ok": 7,
-  "totalFields": 20,
+  "urgent": 8,
+  "disease": 25,
+  "fertilizer": 22,
+  "maturity": 18,
+  "ok": 540,
+  "totalFields": 600,
   "asOf": "2027-03-01T05:00:00Z"
 }
 ```
@@ -457,6 +463,37 @@ Il contratto si **congela alla fine della Fase 0**. Dopo, ogni modifica:
 2. deve essere approvata da **#1 e #4**;
 3. aggiorna nella stessa PR `seed.json`, `MemoryRepository` e, se esiste già, `PrismaRepository` con `prisma/schema.prisma`.
 
+### 7.7 `POST /api/chat` (assistente)
+
+Riceve la conversazione e restituisce la risposta dell'assistente.
+
+```json
+// richiesta
+{ "messages": [ { "role": "user", "content": "What should I do on KSG-003?" } ] }
+
+// risposta
+{
+  "reply": "KSG-003 Chilanga North — Groundnut, 2.3 ha, farmer Grace Banda (+265 991 234 567).\nOpen issues:\n• Harvest now: heavy rain in 48h (URGENT)\nWhat to do first:\n1. Lift groundnuts within 48 hours (due in 2 days)\n...",
+  "links": [ { "label": "Open KSG-003", "href": "/fields/fld_003" } ],
+  "mode": "placeholder"
+}
+```
+
+- `messages`: da 1 a 30 messaggi (`user` / `assistant`, al massimo 2000 caratteri ciascuno). L'ultimo deve essere `user`, altrimenti la risposta è **400** `INVALID_QUERY`.
+- **Oggi (`mode: "placeholder"`)**: `lib/assistant/placeholder.ts` risponde con regole semplici sui dati reali dell'app. Riconosce:
+  - le domande su cosa fare per primo / sulle urgenze;
+  - le domande per categoria (malattie, fertilizzanti, raccolto);
+  - un campo citato per codice (`KSG-003`);
+  - i colori del lampione;
+  - le domande di riepilogo.
+- **Dopo (`mode: "claude"`)**: `lib/assistant/claude.ts` contiene già il prompt di sistema, la funzione che prepara i dati dei campi come contesto e il codice di chiamata a Claude (modello `claude-opus-5-5`, SDK `@anthropic-ai/sdk`), commentato. Per attivarlo:
+  1. si installa il SDK;
+  2. si imposta `ANTHROPIC_API_KEY`;
+  3. in `app/api/chat/route.ts` si usa `answerWithClaude()` al posto del placeholder.
+
+  Il contratto della risposta non cambia.
+- L'assistente non sostituisce le schermate: risponde solo sui dati presenti e mantiene la regola "suspected" (§6.7).
+
 ---
 
 ## 8. Schermate
@@ -481,7 +518,7 @@ Ogni pagina gestisce tre stati:
 ┌────────────────────────────────────────────────────────────────────────────────────┐
 │  FELIX FIELD · Kasungu District                    Mon 1 Mar 2027 · 27°C · 2 mm    │
 ├───────────────────┬───────────────────┬───────────────────┬────────────────────────┤
-│ ▲ URGENT        3 │ ● DISEASE       6 │ ● FERTILIZER    5 │ ● MATURITY           4 │
+│ ▲ URGENT        8 │ ● DISEASE      25 │ ● FERTILIZER   22 │ ● MATURITY          18 │
 │ act within 72h    │ fields affected   │ fields affected   │ fields affected        │
 │ (rosso)           │ (viola)           │ (blu)             │ (ambra)                │
 ├───────────────────┴───────────────────┴───────────────────┴──┬─────────────────────┤
@@ -496,21 +533,33 @@ Ogni pagina gestisce tre stati:
 │  ┌ Legend ─────────────────────────────┐                     │ 4 ● KSG-004 ...     │
 │  │ ■ Urgent ■ Disease ■ Fertilizer     │                     │ 5 ● ...             │
 │  │ ■ Maturity ■ OK  ▨ Multiple issues  │                     │                     │
-│  └─────────────────────────────────────┘                     │ [See all →]         │
-│  Filters: [✓]Disease [✓]Fertilizer [✓]Maturity [✓]OK         │                     │
+│  └─────────────────────────────────────┘                     │                     │
+│  Filters: [✓]Disease [✓]Fertilizer [✓]Maturity [✓]OK         │ [ Ask the assistant ]│
 └──────────────────────────────────────────────────────────────┴─────────────────────┘
 ```
 
 **Comportamento**
 - **KPI card**: mostrano numero, etichetta e colore della categoria. Il tap porta a `/issues/<category>`. Ordine fisso: Urgent, Disease, Fertilizer, Maturity.
 - **Mappa**:
-  - si apre centrata su Kasungu (circa `-13.03, 33.48`), con zoom sui campi (`fitBounds`);
-  - ogni poligono è colorato secondo il §6.3;
-  - al tap su un poligono si apre un **popup** con codice, nome, coltura, alert principale e il pulsante **"Open field"**, che porta a `/fields/:id`.
-- **Filtri**: nascondono o mostrano i poligoni per categoria. Il filtro è solo lato client e non fa nuove chiamate.
-- **Today's priorities**: i primi 5 campi della lista ordinata. Il tap apre il dettaglio del campo.
+  - si apre su tutti i campi intorno a Kasungu (circa `-13.03, 33.48`, `fitBounds`);
+  - **da lontano (zoom < 14) ogni campo è un pallino** colorato secondo il §6.3, perché con 600 campi i poligoni sarebbero invisibili. I pallini dei campi con problemi sono più grandi, quelli urgenti ancora di più, e sono disegnati sopra quelli verdi. Il raggio cresce con lo zoom;
+  - **avvicinandosi (zoom ≥ 14) compaiono i poligoni**, con lo stesso colore e le strisce per i campi con più problemi. Un'etichetta ("Zoom in to see field boundaries") lo segnala;
+  - al tap su un pallino o su un poligono si apre un **popup** (uno solo alla volta) con codice, nome, coltura, alert principale e il pulsante **"Open field"**, che porta a `/fields/:id`.
+- **Filtri**: nascondono o mostrano i campi per categoria. Il filtro è solo lato client e non fa nuove chiamate.
+- **Today's priorities**: i primi 5 campi della lista ordinata. Il tap apre il dettaglio del campo; "All urgent" porta a `/issues/urgent`.
+- **Assistente** (pulsante "Ask the assistant" in basso a destra):
+  - apre un pannello chat con domande suggerite;
+  - le risposte citano i campi con link diretti al dettaglio;
+  - l'intestazione dice chiaramente che è un'anteprima ("Claude not connected yet") finché non è collegato a Claude (§7.7);
+  - la conversazione resta se si naviga e si torna alla dashboard.
+- **Navigazione**: Next 16 non smonta la dashboard quando si va su un'altra pagina, la nasconde con `<Activity>`. La mappa viene quindi ricreata ogni volta che la pagina torna visibile; senza questo accorgimento Leaflet va in errore (`_targets` null).
 
-**Done quando:** i numeri delle KPI coincidono con `GET /api/stats`; ogni poligono ha il colore giusto; il tap su KPI, poligono e priorità porta alla pagina giusta.
+**Done quando:**
+- i numeri delle KPI coincidono con `GET /api/stats`;
+- ogni campo ha il colore giusto, sia come pallino sia come poligono;
+- il tap su KPI, campo e priorità porta alla pagina giusta;
+- tornando alla dashboard da qualsiasi pagina non compaiono errori;
+- l'assistente risponde alle domande suggerite.
 
 ### 8.2 Lista per categoria `/issues/:category`
 
@@ -597,7 +646,7 @@ Ogni pagina gestisce tre stati:
 ## 9. Dati seed (mock)
 
 ### 9.1 Forma del file
-`data/seed.json` ha **la stessa forma delle tabelle del DB** (vedi [`docs/database.md`](docs/database.md)): una lista per ogni tabella, con chiavi in camelCase e id leggibili. Così l'archivio in memoria e il DB partono dagli stessi dati.
+`data/seed.json` ha **la stessa forma delle tabelle del DB** (vedi [`docs/database.md`](docs/database.md)): una lista per ogni tabella, con chiavi in camelCase e id leggibili. Così l'archivio in memoria e il DB partono dagli stessi dati. Il file contiene **una riga per record**: è più compatto e le modifiche si leggono bene nelle PR.
 
 ```json
 {
@@ -621,9 +670,15 @@ Ogni pagina gestisce tre stati:
 2. **#5** disegna i poligoni su [geojson.io](https://geojson.io) sopra terreni agricoli veri intorno a Kasungu (circa `-13.03, 33.48`), con campi da 0,5 a 5 ha, ed esporta il GeoJSON.
 3. **#4** converte foglio + GeoJSON in `seed.json` (anche a mano o con un piccolo script) e verifica che i test passino.
 
-### 9.3 Scenario della demo (20 campi)
+### 9.3 Scenario della demo (600 campi)
 
 Data della demo: **1 marzo 2027**, piena stagione delle piogge. È un momento in cui i tre problemi sono plausibili insieme.
+
+I **600 campi** sono divisi in **12 villaggi** intorno a Kasungu, 50 per villaggio. La posizione dei villaggi è indicativa, i dati sono fittizi. Come nella realtà, **circa il 10% dei campi ha un problema** (60 campi), così il sistema mostra di far emergere poche priorità tra tanti campi. I campi sono di due tipi:
+- **KSG-001…020 — i casi della demo**, scritti a mano (tabella qui sotto). Sono quelli da usare in presentazione.
+- **KSG-021…600 — campi generati**: la maggior parte è sana; 47 hanno un problema preso da un catalogo di modelli per coltura (§9.4). Di questi, 5 sono urgenti e 3 hanno due problemi.
+
+Tutto il file viene prodotto da **`scripts/generate-seed.mjs`** con `npm run seed:generate`; il risultato è deterministico. Per cambiare i contenuti si modifica lo script (i casi della demo o il catalogo dei modelli), si rigenera il file e si lanciano i test. **Non si corregge `seed.json` a mano.**
 
 | Campo | Coltura | Scenario | Categorie | Urgente |
 |---|---|---|---|---|
@@ -641,8 +696,9 @@ Data della demo: **1 marzo 2027**, piena stagione delle piogge. È un momento in
 | KSG-012 | Soybean | Stadio R7, finestra di raccolto tra circa 10 giorni, rischio deiscenza dei baccelli | MATURITY (LOW) | |
 | KSG-013 | Maize | Seconda copertura con urea tra 5 giorni | FERTILIZER (MEDIUM) | |
 | KSG-014 … KSG-020 | Mix delle 5 colture | Nessun problema | — | |
+| KSG-021 … KSG-600 | Mix (mais 40%, le altre colture 15% ciascuna) | 47 con un problema dal catalogo (5 urgenti, 3 doppi), gli altri sani | — | 5 |
 
-**Numeri attesi** (usati nei test e nella demo): `urgent 3 · disease 6 · fertilizer 5 · maturity 4 · ok 7 · totalFields 20`.
+**Numeri attesi** (usati nei test e nella demo): `urgent 8 · disease 25 · fertilizer 22 · maturity 18 · ok 540 · totalFields 600`. Nella lista urgenti i primi tre sono sempre KSG-001, KSG-003, KSG-002: i casi della demo.
 
 Ogni campo con alert ha **2–4 azioni**. Ogni campo ha almeno 1 lettura dei sensori, 5 giorni di meteo e (non tutti) una cattura del drone.
 
@@ -670,7 +726,7 @@ Ogni persona ha un'**area di proprietà**: decide e fa la review su quell'area, 
   - creare il progetto Next.js (TypeScript, Tailwind, ESLint, Vitest) con le 3 pagine vuote;
   - collegarlo al progetto Vercel esistente;
   - scrivere il contratto (§7) insieme a #4.
-- **Fase 1:** layout e header, componenti `ui/` (inclusi `ConfidenceBadge` e `SeverityBadge`), stati di loading, errore e not found, review delle PR.
+- **Fase 1:** layout e header, componenti `ui/` (inclusi `ConfidenceBadge` e `SeverityBadge`), pannello dell'assistente (`components/assistant/`), stati di loading, errore e not found, review delle PR.
 - **Fase 2:** passaggio a `DATA_SOURCE=db` su Vercel, configurazione delle env, verifica end-to-end.
 
 ### #2 — Front: mappa e dashboard
@@ -692,7 +748,7 @@ Ogni persona ha un'**area di proprietà**: decide e fa la review su quell'area, 
 - **Fase 2/3:** stati di loading, errore e vuoto; rifinitura.
 
 ### #4 — Data, back-end e owner del DB
-**Possiede:** `lib/` (contract, domain, data, services), `app/api/`, `data/seed.json`, `prisma/`, il database Azure.
+**Possiede:** `lib/` (contract, domain, data, services, assistant), `app/api/`, `data/seed.json`, `prisma/`, il database Azure, il collegamento a Claude.
 - **Fase 0:**
   - scrivere il contratto (§7) con #1, come schemi Zod;
   - creare `getStats()` in `lib/services` e `MemoryRepository` con 3 campi, così che #2 e #3 possano partire;
@@ -704,12 +760,13 @@ Ogni persona ha un'**area di proprietà**: decide e fa la review su quell'area, 
 - **Fase 2:**
   - `schema.prisma`, migrazioni e seed su Azure;
   - `PrismaRepository` con la stessa interfaccia di `MemoryRepository`;
-  - verifica che `DATA_SOURCE=db` dia gli stessi numeri di `DATA_SOURCE=memory`.
+  - verifica che `DATA_SOURCE=db` dia gli stessi numeri di `DATA_SOURCE=memory`;
+  - collegamento dell'assistente a Claude (§7.7), con la chiave `ANTHROPIC_API_KEY` impostata su Vercel.
 
 ### #5 — Prodotto, contenuti e pitch
 **Possiede:** contenuti agronomici, foglio dati, poligoni, presentazione.
 - **Fase 1:**
-  - foglio con 20 campi, alert e azioni (§9.3–9.4);
+  - foglio con i 20 casi della demo e il catalogo dei problemi per coltura usato per gli altri 580 campi (§9.3–9.4);
   - poligoni su geojson.io;
   - test di usabilità: chiedere a 2–3 persone esterne di completare i 3 flussi e annotare dove si bloccano.
 - **Primo task del giorno 1:** i 3 campi urgenti scritti per intero (alert + azioni + "why"), perché sono il cuore della demo.
@@ -786,6 +843,7 @@ Il file `.env.example` (committato) elenca le variabili; i valori veri stanno ne
 | `DATABASE_URL` | server, solo con `db` | vedi `docs/database.md` | Connessione dell'app |
 | `DIRECT_URL` | server, solo con `db` | vedi `docs/database.md` | Connessione per le migrazioni |
 | `SHADOW_DATABASE_URL` | solo #4 in locale | vedi `docs/database.md` | DB d'appoggio per `prisma migrate dev` |
+| `ANTHROPIC_API_KEY` | server, quando si collega Claude | — | Chiave API di Claude per l'assistente (§7.7). Senza chiave l'assistente usa il placeholder |
 
 **Deploy su Vercel**
 - C'è **un solo progetto**, quello già esistente, collegato al repo GitHub, con Root Directory = root del repo. Vercel riconosce Next.js da solo.
@@ -799,18 +857,20 @@ Il file `.env.example` (committato) elenca le variabili; i valori veri stanno ne
 
 ## 14. Demo script (circa 2 minuti)
 
-1. **Contesto (15 s):** "Felix segue più di 20 campi a Kasungu. Oggi scopre i problemi quando è troppo tardi."
+1. **Contesto (15 s):** "Felix segue circa 600 campi a Kasungu. Oggi scopre i problemi quando è troppo tardi."
 2. **Dashboard (20 s):** si vede la mappa satellitare dei campi colorati, con 3 campi urgenti in rosso. "In un colpo d'occhio Felix sa dove andare oggi."
 3. **Tap su "Urgent" (15 s):** la lista mostra i 3 campi, ordinati per priorità.
 4. **Tap su KSG-003, arachidi (40 s):** il lampione è rosso. L'azione n° 1 dice di raccogliere entro 48 h, perché sono previsti 45 mm di pioggia e c'è rischio aflatossine. Si vedono le prove: meteo, drone, timeline della coltura.
 5. **Il lampione (15 s):** "Grace non ha uno smartphone, ma vede il lampione rosso dal suo campo: sa che deve chiamare Felix o che Felix sta arrivando."
 6. **Un campo a strisce (15 s):** KSG-005, tabacco, ha due problemi e il lampione alterna viola e blu.
-7. **Chiusura (20 s):** impatto, costi e scalabilità (slide di #5).
+7. **Assistente (15 s):** "Where should I go first today?" L'assistente risponde con i 3 campi urgenti e i link diretti.
+8. **Chiusura (20 s):** impatto, costi e scalabilità (slide di #5).
 
 ---
 
 ## 15. Roadmap post-hackathon
 
+- **Assistente collegato a Claude** (§7.7): risposte in linguaggio naturale sui dati dei campi; poi anche in chichewa.
 - **Dati reali:**
   - sensori IoT (umidità, NPK, pH) via LoRaWAN o GSM;
   - API meteo (es. Open-Meteo);
