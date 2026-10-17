@@ -1,9 +1,10 @@
 // Mail di avviso per i problemi nuovi o aggravati trovati dall'analisi (foto caricata o Update).
-// Destinatari: ALERT_EMAIL_TO (indirizzi separati da virgola). Una mail per problema, con lo stesso
+// Destinatari: ALERT_EMAIL_TO (indirizzi separati da virgola) più quelli aggiunti da Settings → Alert recipients. Una mail per problema, con lo stesso
 // titolo e la stessa descrizione dell'alert mostrato nell'app.
 import type { Category, Severity } from "@/lib/contract/schemas";
 import type { Seed } from "@/lib/contract/seed-schema";
 import type { FieldChange } from "@/lib/pipeline/types";
+import { mergeRecipients, readRecipients } from "@/lib/recipients";
 import { isEmailEnabled, sendEmail } from "./send";
 import type { EmailTemplate } from "./template";
 
@@ -55,7 +56,7 @@ export function newIssues(changes: FieldChange[], seed: Seed): NewIssue[] {
 
 export async function emailIssues(issues: NewIssue[]): Promise<EmailOutcome> {
   if (!issues.length) return { status: "none" };
-  const recipients = alertRecipients();
+  const recipients = mergeRecipients(alertRecipients(), await readRecipients());
   if (!isEmailEnabled() || !recipients.length) return { status: "not_configured" };
   try {
     let failed = 0;

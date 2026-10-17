@@ -5,6 +5,7 @@ import { SeedSchema } from "@/lib/contract/seed-schema";
 import { emailIssues, newIssues } from "@/lib/email/alerts";
 import { setTransporter } from "@/lib/email/send";
 import type { FieldChange } from "@/lib/pipeline/types";
+import { mergeRecipients } from "@/lib/recipients";
 
 const seed = SeedSchema.parse(rawSeed);
 const alert = seed.alerts.find((a) => a.status === "OPEN")!;
@@ -53,5 +54,13 @@ describe("issue emails", () => {
     vi.stubEnv("ALERT_EMAIL_TO", "");
     expect(await emailIssues(newIssues([change], seed))).toEqual({ status: "not_configured" });
     expect(sendMail).not.toHaveBeenCalled();
+  });
+
+  it("sends to ALERT_EMAIL_TO plus the addresses added in Settings, without duplicates", () => {
+    expect(mergeRecipients(["judge1@test.org", "Team@Test.org"], ["team@test.org", "farmer@test.org"])).toEqual([
+      "judge1@test.org",
+      "team@test.org",
+      "farmer@test.org",
+    ]);
   });
 });

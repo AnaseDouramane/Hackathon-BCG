@@ -1,6 +1,7 @@
 "use client";
 
-import { LogOut, Settings } from "lucide-react";
+import { LogOut, Mail, Settings } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 import { Menu } from "@/components/shell/Menu";
 
@@ -26,9 +27,13 @@ function Avatar() {
 export function SettingsMenu() {
   return (
     <Menu label="Settings" trigger={<Settings size={20} aria-hidden />}>
-      <p role="menuitem" aria-disabled className="px-3 py-2 text-sm text-muted">
-        Settings — coming soon
-      </p>
+      <Link
+        href="/settings/recipients"
+        role="menuitem"
+        className="flex min-h-11 w-full items-center gap-2 rounded-lg px-3 text-left text-sm font-semibold text-ink hover:bg-line/50"
+      >
+        <Mail size={16} aria-hidden /> Alert recipients
+      </Link>
     </Menu>
   );
 }
