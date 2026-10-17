@@ -15,13 +15,13 @@ export async function PlantPhotosPanel({ fieldId }: { fieldId: string }) {
   const storage = isStorageEnabled();
 
   return (
-    <Card>
-      <CardTitle aside={waiting.length ? `${waiting.length} waiting for update` : undefined}>Plant photos</CardTitle>
+    <Card className="border-2 border-ok/40">
+      <CardTitle aside={waiting.length ? `${waiting.length} waiting for update` : undefined}>Check a plant from a photo</CardTitle>
       <PlantPhotoUpload fieldId={fieldId} disabled={!storage} />
       {!storage && <p className="mt-2 text-xs text-muted">Photo upload needs a Vercel Blob store (BLOB_READ_WRITE_TOKEN).</p>}
 
       {(waiting.length > 0 || analysed.length > 0) && (
-        <ul className="mt-3 grid grid-cols-2 gap-3">
+        <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
           {waiting.map((p) => (
             <li key={p.url} className="space-y-1">
               <Image src={p.url} alt="Plant photo waiting for analysis" width={240} height={180} unoptimized className="h-28 w-full rounded-xl object-cover" />

@@ -1,6 +1,6 @@
 "use client";
-import { Camera, CircleCheck, Mail, TriangleAlert } from "lucide-react";
-import { useActionState } from "react";
+import { Camera, CircleCheck, ImagePlus, Mail, TriangleAlert } from "lucide-react";
+import { useActionState, useState } from "react";
 import { type UploadState, uploadFieldPhoto } from "@/app/(app)/fields/[id]/actions";
 import { CategoryIcon } from "@/components/ui/CategoryIcon";
 import { CATEGORY_LABEL } from "@/lib/domain/colors";
@@ -97,7 +97,9 @@ function Result({ state }: { state: NonNullable<UploadState> }) {
 }
 
 export function PlantPhotoUpload({ fieldId, disabled }: { fieldId: string; disabled: boolean }) {
+  const [fileName, setFileName] = useState<string | null>(null);
   const [state, upload, uploading] = useActionState<UploadState, FormData>(async (prev, formData) => {
+    setFileName(null); // dopo l'invio il form si svuota: si toglie anche il nome del file
     const file = formData.get("photo");
     if (!(file instanceof File) || file.size === 0) return { ok: false, message: "Choose a photo first." };
     if (file.size > MAX_FILE_BYTES) return { ok: false, message: "The photo is too large (max 5 MB)." };
@@ -113,25 +115,35 @@ export function PlantPhotoUpload({ fieldId, disabled }: { fieldId: string; disab
   return (
     <div className="space-y-3">
       <form action={upload} className="space-y-2">
-        <label className="block text-sm text-ink">
-          Photo of a diseased plant, or of a plant to check for maturity (max 5 MB)
-          <input
-            type="file"
-            name="photo"
-            accept="image/*"
-            required
-            disabled={disabled || uploading}
-            className="mt-1 block w-full text-sm text-muted file:mr-3 file:min-h-11 file:rounded-full file:border-0 file:bg-surface file:px-4 file:font-semibold file:text-ink"
-          />
-        </label>
-        <button
-          type="submit"
-          disabled={disabled || uploading}
-          className="inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-4 text-sm font-semibold text-white hover:bg-ink/85 disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          <Camera size={16} aria-hidden />
-          {uploading ? "Analysing the photo…" : "Upload and analyse"}
-        </button>
+        <p className="text-sm text-ink">Upload a photo of a diseased plant, or of a plant to check for maturity (max 5 MB).</p>
+        <div className="flex flex-wrap items-center gap-2">
+          {/* input nativo nascosto: il bottone del browser sarebbe nella lingua del sistema ("Scegli file") */}
+          <label
+            className={`inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-line bg-surface px-4 text-sm font-semibold text-ink hover:bg-line/60 ${
+              disabled || uploading ? "pointer-events-none opacity-60" : ""
+            }`}
+          >
+            <ImagePlus size={16} aria-hidden />
+            Choose photo
+            <input
+              type="file"
+              name="photo"
+              accept="image/*"
+              disabled={disabled || uploading}
+              onChange={(e) => setFileName(e.currentTarget.files?.[0]?.name ?? null)}
+              className="sr-only"
+            />
+          </label>
+          {fileName && <span className="max-w-56 truncate text-sm text-muted">{fileName}</span>}
+          <button
+            type="submit"
+            disabled={disabled || uploading || !fileName}
+            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-4 text-sm font-semibold text-white hover:bg-ink/85 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            <Camera size={16} aria-hidden />
+            {uploading ? "Analysing the photo…" : "Upload and analyse"}
+          </button>
+        </div>
         {uploading && <p className="text-xs text-muted">crop.health and Claude are checking the plant — about 15 seconds.</p>}
       </form>
       {state && !uploading && <Result state={state} />}

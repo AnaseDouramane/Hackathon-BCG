@@ -96,6 +96,9 @@ async function FieldContent({ params }: { params: PageProps<"/fields/[id]">["par
         </div>
       </header>
 
+      {/* foto della pianta in alto: è l'azione principale della pagina nella demo */}
+      <PlantPhotosPanel fieldId={field.id} />
+
       <CropTimeline planting={field.planting} now={now} />
 
       <WeatherStrip days={field.weather} />
@@ -108,7 +111,6 @@ async function FieldContent({ params }: { params: PageProps<"/fields/[id]">["par
         <div className="space-y-4">
           <SensorPanel reading={field.latestSensorReading} />
           <DronePanel capture={field.latestDroneCapture} droneAlert={droneAlert} />
-          <PlantPhotosPanel fieldId={field.id} />
         </div>
       </div>
     </main>
