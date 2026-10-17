@@ -1,6 +1,6 @@
 "use client";
 
-import { LogOut, Mail, Settings } from "lucide-react";
+import { LogOut, Mail, Presentation, Settings } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { Menu } from "@/components/shell/Menu";
@@ -33,6 +33,13 @@ export function SettingsMenu() {
         className="flex min-h-11 w-full items-center gap-2 rounded-lg px-3 text-left text-sm font-semibold text-ink hover:bg-line/50"
       >
         <Mail size={16} aria-hidden /> Alert recipients
+      </Link>
+      <Link
+        href="/settings/presentation"
+        role="menuitem"
+        className="flex min-h-11 w-full items-center gap-2 rounded-lg px-3 text-left text-sm font-semibold text-ink hover:bg-line/50"
+      >
+        <Presentation size={16} aria-hidden /> Presentation
       </Link>
     </Menu>
   );
