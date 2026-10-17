@@ -40,7 +40,7 @@ export function UpdateButton({ pendingPhotos, disabled, autoRun }: { pendingPhot
       </button>
       <p className="text-xs text-muted" aria-live="polite">
         {running
-          ? "Analysing the first 50 fields with the weather, soil, photo and risk APIs…"
+          ? "Running the weather, soil, photo and risk APIs…"
           : state && !state.ok
             ? <span className="text-urgent">{state.error}</span>
             : state?.ok

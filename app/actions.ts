@@ -1,5 +1,5 @@
 "use server";
-// "Update": rilancia la pipeline delle API sui primi 50 campi (Claude rivaluta solo quelli con evidenze
+// "Update": rilancia la pipeline delle API sui primi 5 campi (per la velocità della demo) (Claude rivaluta solo quelli con evidenze
 // cambiate), salva lo snapshot, aggiorna le pagine e manda le mail per i problemi nuovi.
 // Gira anche da sola alla prima apertura, quando non c'è ancora nessuna analisi.
 import { isSignedIn } from "@/lib/auth/server";
@@ -10,7 +10,7 @@ import { analyseAndSave } from "@/lib/pipeline/update";
 import type { FieldChange, SourceStatus } from "@/lib/pipeline/types";
 import { isStorageEnabled } from "@/lib/storage";
 
-const UPDATE_FIELD_LIMIT = 50;
+const UPDATE_FIELD_LIMIT = 5;
 
 export type UpdateResult =
   | { ok: true; createdAt: string; changes: FieldChange[]; sources: SourceStatus[]; photos: number; issues: number; email: EmailOutcome }
