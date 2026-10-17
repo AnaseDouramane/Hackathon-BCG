@@ -26,7 +26,7 @@ export const CATEGORY_UI: Record<
     border: "border-disease",
   },
   FERTILIZER: {
-    label: "Fertilizer",
+    label: "Needs (fertilizers & water)",
     Icon: FlaskConical,
     text: "text-fertilizer",
     bg: "bg-fertilizer",

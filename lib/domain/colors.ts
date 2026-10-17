@@ -21,7 +21,7 @@ export const CATEGORY_LAMP_ORDER: readonly Category[] = ["DISEASE", "FERTILIZER"
 
 export const CATEGORY_LABEL: Record<Category, string> = {
   DISEASE: "Disease",
-  FERTILIZER: "Fertilizer",
+  FERTILIZER: "Needs (fertilizers & water)",
   MATURITY: "Maturity",
 };
 

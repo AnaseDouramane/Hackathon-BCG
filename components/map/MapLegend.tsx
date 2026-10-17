@@ -3,7 +3,7 @@ import { LAMP_HEX } from "@/lib/domain/colors";
 const ITEMS = [
   { label: "Urgent", fill: LAMP_HEX.RED },
   { label: "Disease", fill: LAMP_HEX.PURPLE },
-  { label: "Fertilizer", fill: LAMP_HEX.BLUE },
+  { label: "Needs (fertilizers & water)", fill: LAMP_HEX.BLUE },
   { label: "Maturity", fill: LAMP_HEX.AMBER },
   { label: "OK", fill: LAMP_HEX.GREEN },
   {
