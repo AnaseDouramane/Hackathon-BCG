@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+/* Token del dominio (spec §6.1): usare bg-urgent, text-disease, border-fertilizer, ...
+   Gli stessi valori sono in lib/domain/colors.ts per mappa e lampione. */
+@theme {
+  --color-urgent: #e53935;
+  --color-disease: #8e44ad;
+  --color-fertilizer: #2e86de;
+  --color-maturity: #f5a623;
+  --color-ok: #43a047;
+
+  --color-ink: #1d2721;
+  --color-muted: #5d6b63;
+  --color-line: #dfe4dc;
+  --color-surface: #f3f5f0;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+html {
+  color-scheme: light;
+}
+
+/* The app shell (top bar + sidebar + content) is exactly viewport-high and scrolls inside its content
+   area, so the document itself must never show a second scrollbar. */
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-size: 16px;
+}
+
+/* Lampione: alone luminoso */
+.lamp-glow {
+  transition:
+    background-color 400ms ease,
+    box-shadow 400ms ease;
+}
+
+@keyframes urgent-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 18px 4px var(--glow);
+  }
+  50% {
+    box-shadow: 0 0 34px 12px var(--glow);
+  }
+}
+
+.lamp-pulse {
+  animation: urgent-pulse 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lamp-pulse {
+    animation: none;
+  }
+}
+
+/* Leaflet: popup più leggibili su tablet */
+.leaflet-popup-content-wrapper {
+  border-radius: 12px;
+}
+.leaflet-popup-content {
+  margin: 12px 14px;
+  font-family: var(--font-sans);
+}
+.leaflet-container {
+  font-family: var(--font-sans);
+}

@@ -29,11 +29,12 @@
 | Versione | PostgreSQL **16** |
 | Tier | **Burstable B1ms** (1 vCore, 2 GB RAM): sufficiente per la demo |
 | Database | `felix_dev` (condiviso dal team), `felix_prod` (usato dalla demo deployata), `felix_shadow` (d'appoggio per le migrazioni) |
-| Accesso dal codice | **Prisma** dall'API Express (`apps/api`), deployata su **Vercel** |
-| Fonte di verità dello schema | `apps/api/prisma/schema.prisma` + le migrazioni in `apps/api/prisma/migrations/` (in git) |
-| Dati iniziali | `packages/shared/data/seed.json`, lo **stesso file** usato dai mock del front |
+| Accesso dal codice | **Prisma**, solo da `lib/data/prisma-repository.ts` nell'app **Next.js**, deployata su **Vercel** (un solo progetto) |
+| Quando si usa | Con `DATA_SOURCE=db`. Con `DATA_SOURCE=memory` (fase 1) l'app legge `seed.json` e il DB non serve |
+| Fonte di verità dello schema | `prisma/schema.prisma` + le migrazioni in `prisma/migrations/` (in git) |
+| Dati iniziali | `data/seed.json`, lo **stesso file** letto dall'archivio in memoria (`MemoryRepository`) |
 
-**Principio:** il DB salva solo **fatti** (campi, colture, alert, azioni, letture). Tutto ciò che è una **regola** (urgenza, colore del lampione, priorità, statistiche) si calcola nel codice condiviso (`packages/shared/src/domain/`). Così mock e API reale danno sempre gli stessi risultati.
+**Principio:** il DB salva solo **fatti** (campi, colture, alert, azioni, letture). Tutto ciò che è una **regola** (urgenza, colore del lampione, priorità, statistiche, etichetta di confidenza) si calcola in `lib/domain/`. Così memoria e DB danno sempre gli stessi risultati.
 
 ---
 
@@ -131,6 +132,7 @@ Legenda: **PK** chiave primaria · **FK** chiave esterna · **UQ** unico · **NN
 | `title` | text | NN | Titolo breve in inglese |
 | `description` | text | NN | Spiegazione per Felix |
 | `source` | enum `AlertSource` | NN | `SENSOR`, `DRONE`, `WEATHER`, `MANUAL` |
+| `confidence` | double precision | nullable, 0–1 | Confidenza dell'alert automatico (es. `0.78`). `NULL` per gli alert `MANUAL`, cioè confermati da Felix. Vedi spec §6.7 |
 | `detected_at` | timestamptz | NN | Quando è stato rilevato |
 | `due_at` | timestamptz | nullable | Entro quando agire (serve per l'urgenza) |
 | `status` | enum `AlertStatus` | NN, default `OPEN` | `OPEN`, `RESOLVED` |
@@ -138,6 +140,8 @@ Legenda: **PK** chiave primaria · **FK** chiave esterna · **UQ** unico · **NN
 | `created_at` | timestamptz | NN, default `now()` | |
 
 Indici: `(field_id, status)` per gli alert aperti di un campo, `(category, status)` per le liste per categoria.
+
+> **Regola di onestà (spec §6.7):** gli alert `DISEASE` con fonte `SENSOR` descrivono una **condizione di rischio** ("Conditions favourable to …"), non una malattia. Le prove visive arrivano da `DRONE` o dalla conferma di Felix (`MANUAL`).
 
 ### 3.6 `actions` — cosa fare, in ordine di priorità
 | Colonna | Tipo | Vincoli | Descrizione |
@@ -190,7 +194,7 @@ Vincolo: **UQ `(field_id, date)`**, cioè una sola previsione per campo per gior
 | `id` | text | PK | |
 | `field_id` | text | NN, FK → `fields.id` (cascade) | |
 | `captured_at` | timestamptz | NN | |
-| `image_url` | text | NN | Per la demo è un percorso statico (`/drone/ksg-003.jpg` in `apps/web/public/`). In futuro, Azure Blob Storage |
+| `image_url` | text | NN | Per la demo è un percorso statico (`/drone/ksg-003.jpg` in `public/`). In futuro, Azure Blob Storage |
 | `ndvi_mean` | double precision | nullable | Indice di vegetazione medio (0–1) |
 | `findings` | text | nullable | Cosa ha rilevato l'analisi |
 
@@ -213,11 +217,12 @@ Indice: `(field_id, captured_at DESC)`.
 
 | Valore | Dove si calcola | Perché non sta nel DB |
 |---|---|---|
-| **Urgenza** di alert e campi | `shared/domain/urgency.ts` | Dipende da "adesso": un alert con scadenza tra 5 giorni diventa urgente fra 2 giorni senza che nessuno lo aggiorni |
-| **Colori del lampione / del poligono** | `shared/domain/lamp.ts` | Derivano dagli alert aperti; salvarli significherebbe doverli tenere allineati |
-| **Priorità** di alert e campi | `shared/domain/priority.ts` | Stessa logica nei mock e nell'API |
-| **Statistiche** della dashboard | `shared/domain/stats.ts` | Sono conteggi sugli alert: salvarli sarebbe solo un duplicato |
-| **Categorie di un campo** | `shared/domain/build.ts` | Insieme delle `category` degli alert aperti |
+| **Urgenza** di alert e campi | `lib/domain/urgency.ts` | Dipende da "adesso": un alert con scadenza tra 5 giorni diventa urgente fra 2 giorni senza che nessuno lo aggiorni |
+| **Colori del lampione / del poligono** | `lib/domain/lamp.ts` | Derivano dagli alert aperti; salvarli significherebbe doverli tenere allineati |
+| **Priorità** di alert e campi | `lib/domain/priority.ts` | Stessa logica con memoria e con DB |
+| **Statistiche** della dashboard | `lib/domain/stats.ts` | Sono conteggi sugli alert: salvarli sarebbe solo un duplicato |
+| **Categorie di un campo** | `lib/domain/build.ts` | Insieme delle `category` degli alert aperti |
+| **Etichetta "Suspected · 78%"** | `lib/domain/confidence.ts` | Si ricava da `category` + `confidence`: nel DB c'è solo il numero |
 
 **Unica eccezione:** `actions.priority` è salvata, perché nella demo l'ordine delle azioni è scelto a mano nei contenuti (raccomandazioni statiche).
 
@@ -237,6 +242,7 @@ Ogni dato mostrato nell'app, con il campo dell'API e la colonna da cui proviene.
 | Lista | Agricoltore, villaggio | `farmerName`, `village` | `farmers.name`, `farmers.village` |
 | Lista | Alert principale, gravità, scadenza, fonte | `topAlert` | `alerts` (ordinati con §6.4 dello spec) |
 | Lista | "+N issues" | `openAlertsCount` | conteggio di `alerts` OPEN |
+| Lista / Dettaglio | "Suspected · 78%" / "Estimate · 85%" | `topAlert.confidence`, `alerts[].confidence` | `alerts.confidence` (etichetta calcolata, §4) |
 | Dettaglio | Telefono dell'agricoltore | `farmer.phone` | `farmers.phone` |
 | Dettaglio | Timeline della coltura | `planting.*` | `plantings.planted_at`, `expected_harvest_start/end`, `growth_stage` |
 | Dettaglio | Azioni (titolo, why, scadenza, fatto) | `actions[]` | `actions.*` |
@@ -249,7 +255,7 @@ Ogni dato mostrato nell'app, con il campo dell'API e la colonna da cui proviene.
 
 ## 6. Schema Prisma
 
-Da copiare in `apps/api/prisma/schema.prisma`.
+Da copiare in `prisma/schema.prisma`, alla root del progetto Next.js.
 
 > **Nota sulla versione di Prisma.** Lo schema usa la sintassi classica (URL nel blocco `datasource`). Se al setup si installa una versione di Prisma che sposta la configurazione della connessione in `prisma.config.ts`, si seguono le istruzioni di upgrade ufficiali: **modelli, enum e indici restano identici**, cambia solo dove si dichiarano le URL.
 
@@ -381,6 +387,7 @@ model Alert {
   title       String
   description String
   source      AlertSource
+  confidence  Float? // 0–1; null = confermato da Felix (MANUAL)
   detectedAt  DateTime      @map("detected_at") @db.Timestamptz
   dueAt       DateTime?     @map("due_at") @db.Timestamptz
   status      AlertStatus   @default(OPEN)
@@ -564,8 +571,8 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA public
 
 Quando il provisioning è finito:
 - [ ] Le connection string (§8) nel **password manager** condiviso, una voce per DB e per utente.
-- [ ] Le env impostate nel progetto Vercel `felix-api`, sia in *Production* sia in *Preview*.
-- [ ] La **region delle funzioni** di `felix-api` su Vercel impostata vicino al DB: Cape Town (`cpt1`) per South Africa North, Frankfurt (`fra1`) per West Europe.
+- [ ] Le env impostate nel **progetto Vercel esistente**, sia in *Production* sia in *Preview*. Il passaggio a `DATA_SOURCE=db` si fa solo dopo le verifiche del §11.
+- [ ] La **region delle funzioni** del progetto su Vercel impostata vicino al DB: Cape Town (`cpt1`) per South Africa North, Frankfurt (`fra1`) per West Europe.
 - [ ] Gli IP del team aggiunti al firewall. Se qualcuno cambia rete, ad esempio a casa, deve comunicare il nuovo IP.
 - [ ] Il risultato delle verifiche del §11 scritto nella PR.
 
@@ -583,7 +590,7 @@ Formato: `postgresql://UTENTE:PASSWORD@HOST:PORTA/DATABASE?parametri`
 
 | Variabile | Usata da | Utente | Valore (sostituire `<...>`) |
 |---|---|---|---|
-| `DATABASE_URL` | API (runtime) | `felix_app` | `postgresql://felix_app:<pwd>@felix-field-db.postgres.database.azure.com:5432/<db>?sslmode=require&connection_limit=1&pool_timeout=20` |
+| `DATABASE_URL` | app Next.js (runtime, con `DATA_SOURCE=db`) | `felix_app` | `postgresql://felix_app:<pwd>@felix-field-db.postgres.database.azure.com:5432/<db>?sslmode=require&connection_limit=1&pool_timeout=20` |
 | `DIRECT_URL` | `prisma migrate`, seed | `felix_migrator` | `postgresql://felix_migrator:<pwd>@felix-field-db.postgres.database.azure.com:5432/<db>?sslmode=require` |
 | `SHADOW_DATABASE_URL` | solo `prisma migrate dev` (#4, in locale) | `felix_migrator` | `postgresql://felix_migrator:<pwd>@felix-field-db.postgres.database.azure.com:5432/felix_shadow?sslmode=require` |
 
@@ -596,8 +603,8 @@ Formato: `postgresql://UTENTE:PASSWORD@HOST:PORTA/DATABASE?parametri`
 | Persona | `.env` locale con |
 |---|---|
 | #4 (owner del DB) | Tutte e tre, su `felix_dev` |
-| #1 (per la fase 2) | `DATABASE_URL` e `DIRECT_URL` su `felix_dev`, entrambe con l'utente **`felix_app`** |
-| #2, #3, #5 | Nessuna: lavorano sui mock |
+| #1 (per la fase 2) | `DATA_SOURCE=db`, `DATABASE_URL` e `DIRECT_URL` su `felix_dev`, entrambe con l'utente **`felix_app`** |
+| #2, #3, #5 | Nessuna: lavorano con `DATA_SOURCE=memory` |
 
 ---
 
@@ -605,7 +612,7 @@ Formato: `postgresql://UTENTE:PASSWORD@HOST:PORTA/DATABASE?parametri`
 
 ### 9.1 Prima migrazione (#4)
 ```bash
-# da apps/api, con .env puntato su felix_dev
+# dalla root del progetto, con .env puntato su felix_dev
 npx prisma migrate dev --name init      # crea prisma/migrations/<data>_init e la applica a felix_dev
 npx prisma generate                     # genera il client TypeScript
 ```
@@ -617,10 +624,10 @@ Poi si committa la cartella `prisma/migrations/` nella PR.
 npx prisma migrate deploy               # applica le migrazioni già create, non ne crea di nuove e non resetta mai
 ```
 
-### 9.3 Seed (`apps/api/prisma/seed.ts`)
+### 9.3 Seed (`prisma/seed.ts`)
 
 Comportamento richiesto:
-1. Legge `packages/shared/data/seed.json` e lo **valida** con `seed-schema.ts` di `shared`. Se non è valido, si ferma con un errore.
+1. Legge `data/seed.json` e lo **valida** con `lib/contract/seed-schema.ts`, lo stesso schema usato dal `MemoryRepository`. Se non è valido, si ferma con un errore.
 2. Svuota le tabelle in ordine inverso alle dipendenze: `actions`, `alerts`, `sensor_readings`, `weather_forecasts`, `drone_captures`, `lamps`, `plantings`, `fields`, `crops`, `farmers`.
 3. Inserisce i dati in ordine: `farmers`, `crops`, `fields`, `plantings`, `alerts`, `actions`, `sensor_readings`, `weather_forecasts`, `drone_captures`. Usa `createMany`, tutto in **una transazione**. La tabella `lamps` resta vuota nella demo.
 4. Stampa un riepilogo con il numero di righe per tabella.
@@ -630,8 +637,8 @@ Comportamento richiesto:
 Bozza:
 ```ts
 import { PrismaClient } from "@prisma/client";
-import seed from "@felix/shared/data/seed.json";
-import { SeedSchema } from "@felix/shared";
+import seed from "../data/seed.json";
+import { SeedSchema } from "../lib/contract/seed-schema"; // percorsi relativi: tsx non legge gli alias "@/"
 
 const prisma = new PrismaClient();
 
@@ -662,7 +669,7 @@ main().finally(() => prisma.$disconnect());
 
 Le date di `seed.json` sono stringhe ISO: `seed-schema.ts` le converte in `Date` (con `z.coerce.date()`) prima dell'inserimento.
 
-Lo script si registra in `apps/api/package.json` e si lancia con `npm run db:seed`:
+Lo script si registra nel `package.json` del progetto e si lancia con `npm run db:seed`:
 ```json
 "prisma": { "seed": "tsx prisma/seed.ts" }
 ```
@@ -671,7 +678,7 @@ Il seed si esegue con `DIRECT_URL` (utente `felix_migrator`), perché svuota le 
 ### 9.4 Modificare lo schema in seguito
 1. Si apre una PR che modifica `schema.prisma`, con la review di **#1 e #4** (spec §12).
 2. #4 esegue `npx prisma migrate dev --name <descrizione>` su `felix_dev` e committa la migrazione.
-3. Se cambiano i dati, si aggiornano nella **stessa PR** `seed.json`, `seed-schema.ts`, gli schemi API e gli handler MSW.
+3. Se cambiano i dati, si aggiornano nella **stessa PR** `seed.json`, `seed-schema.ts`, gli schemi del contratto (`lib/contract/schemas.ts`) ed entrambi i repository (`memory-repository.ts`, `prisma-repository.ts`).
 4. Dopo il merge, #4 esegue `migrate deploy` su `felix_prod` e poi `db:seed`.
 
 ---
@@ -709,11 +716,12 @@ UNION ALL SELECT 'actions', count(*) FROM actions;
 SELECT category, count(DISTINCT field_id) AS campi
 FROM alerts WHERE status = 'OPEN'
 GROUP BY category;
--- Attesi (spec §9.3): DISEASE 6 · FERTILIZER 5 · MATURITY 4
+-- Attesi (spec §9.3): fields 600 · DISEASE 25 · FERTILIZER 22 · MATURITY 18
 ```
 
 - [ ] `felix_app` **non** può cambiare la struttura: `CREATE TABLE test (id int);` collegati come `felix_app` deve dare *permission denied*.
-- [ ] L'API deployata su Vercel risponde e `GET /api/stats` restituisce **esattamente** `urgent 3 · disease 6 · fertilizer 5 · maturity 4 · ok 7 · totalFields 20`, gli stessi numeri dei mock.
+- [ ] Con `DATA_SOURCE=db`, prima in locale e poi su una Preview di Vercel, `GET /api/stats` restituisce **esattamente** `urgent 8 · disease 25 · fertilizer 22 · maturity 18 · ok 540 · totalFields 600`, gli stessi numeri di `DATA_SOURCE=memory`.
+- [ ] Il test Vitest di confronto tra `MemoryRepository` e `PrismaRepository` (spec §6.6) passa.
 
 ---
 

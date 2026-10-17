@@ -1,0 +1,1 @@
+# tools/python/*.py use only the Python standard library (Python 3.9+): no third-party packages needed.
