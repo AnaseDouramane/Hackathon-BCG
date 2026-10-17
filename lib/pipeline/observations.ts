@@ -60,7 +60,11 @@ export type FieldObservations = {
   } | null;
   drone: { captured_at: string; ndvi: number | null; findings: string | null } | null;
   fertilizer_plan?: string;
-  photos: { uploaded_at: string; crop_health: PhotoFinding["cropHealth"]; visual_notes: string }[];
+  /**
+   * Foto caricate dal campo. Niente date assolute: la demo vive in un "adesso" fisso (DEMO_NOW)
+   * e una data reale farebbe credere a Claude che la foto sia precedente alla semina.
+   */
+  photos: { is_new: boolean; days_ago: number; crop_health: PhotoFinding["cropHealth"]; visual_notes: string }[];
 };
 
 export type FieldContext = {
@@ -83,6 +87,7 @@ export function buildFieldContext(
   zoneForecast: DailyForecast[],
   photos: PhotoFinding[],
   now: Date,
+  isNewPhoto: (photo: PhotoFinding) => boolean = () => false,
 ): FieldContext {
   const zone = db.zones.get(row.zone_id);
   const gateway = db.gateways.get(row.gateway_id);
@@ -142,7 +147,12 @@ export function buildFieldContext(
           }
         : null,
       drone: drone ? { captured_at: drone.capturedAt.toISOString(), ndvi: drone.ndviMean, findings: drone.findings } : null,
-      photos: photos.map((p) => ({ uploaded_at: p.uploadedAt, crop_health: p.cropHealth, visual_notes: p.visualNotes })),
+      photos: photos.map((p) => ({
+        is_new: isNewPhoto(p),
+        days_ago: Math.max(0, Math.floor((Date.now() - Date.parse(p.uploadedAt)) / DAY_MS)),
+        crop_health: p.cropHealth,
+        visual_notes: p.visualNotes,
+      })),
     },
   };
 }

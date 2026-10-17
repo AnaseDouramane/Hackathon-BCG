@@ -42,7 +42,11 @@ export async function PlantPhotosPanel({ fieldId }: { fieldId: string }) {
                     {disease.name} · {Math.round(disease.probability * 100)}%
                   </Badge>
                 )}
-                {p.visualNotes && <p className="text-xs text-ink/80">{p.visualNotes}</p>}
+                {p.visualNotes && (
+                  <p className="line-clamp-3 text-xs text-ink/80" title={p.visualNotes}>
+                    {p.visualNotes}
+                  </p>
+                )}
                 <p className="text-xs text-muted">Analysed {formatShortDate(p.analysedAt)}</p>
               </li>
             );

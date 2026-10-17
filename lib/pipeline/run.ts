@@ -13,6 +13,7 @@ import { type DailyForecast, getDailyForecast, isWeatherEnabled } from "@/lib/ex
 import { loadKasunguDb } from "@/lib/kasungu/db";
 import { diffSeeds } from "./diff";
 import { buildFieldContext, type FieldContext, hasFieldEvidence, needsFertilizerPlan, redateForecast } from "./observations";
+import { cropHealthAlert, ensurePhotoIssue } from "./photo-issue";
 import { alertsFromRisk, weatherRows } from "./to-seed";
 import type { FieldChange, PhotoFinding, SourceStatus } from "./types";
 
@@ -78,7 +79,7 @@ export function evidenceFingerprint(ctx: FieldContext): string {
     field_reports,
     soil_sensor,
     drone,
-    photos: photos.map((p) => ({ uploaded_at: p.uploaded_at, crop_health: p.crop_health })),
+    photos: photos.map((p) => p.crop_health),
     weather_alerts: ctx.zone_context.weather_alerts.map((a) => `${a.event}@${a.date}`),
   };
   return createHash("sha1").update(JSON.stringify(payload)).digest("hex");
@@ -137,6 +138,7 @@ export async function runAnalysis(input: RunInput): Promise<RunOutput> {
     }),
   );
   const fieldsWithNewPhotos = new Set(newPhotos.map((p) => p.fieldId));
+  const newPhotoUrls = new Set(newPhotos.map((p) => p.url));
 
   // 3) Contesti per campo (formato risk.py) e impronte; le foto nuove contano con il risultato di crop.health
   const prevWeather = groupByField(previous.weatherForecasts);
@@ -160,7 +162,7 @@ export async function runAnalysis(input: RunInput): Promise<RunOutput> {
         .filter((r) => r.photo.fieldId === row.field_id)
         .map((r) => ({ url: r.photo.url, uploadedAt: r.photo.uploadedAt.toISOString(), analysedAt: new Date().toISOString(), cropHealth: r.cropHealth, visualNotes: "" })),
     ];
-    contexts.set(row.field_id, buildFieldContext(row, db, agg, forecast, photos, now));
+    contexts.set(row.field_id, buildFieldContext(row, db, agg, forecast, photos, now, (p) => newPhotoUrls.has(p.url)));
   }
   const candidates = [...contexts.values()].filter((c) => hasFieldEvidence(c, fieldsWithNewPhotos.has(c.field.field_id)));
   const fingerprintOf = new Map(candidates.map((c) => [c.field.field_id, evidenceFingerprint(c)]));
@@ -197,7 +199,7 @@ export async function runAnalysis(input: RunInput): Promise<RunOutput> {
       fields: [c],
       images: newPhotoResults
         .filter((r) => r.photo.fieldId === c.field.field_id)
-        .map((r) => ({ fieldId: r.photo.fieldId, base64: r.base64, mediaType: "image/jpeg" as const })),
+        .map((r) => ({ fieldId: r.photo.fieldId, base64: r.base64, mediaType: "image/jpeg" as const, cropHealth: r.cropHealth })),
     })),
     ...Array.from({ length: Math.ceil(otherCandidates.length / BATCH_SIZE) }, (_, i) => ({
       fields: otherCandidates.slice(i * BATCH_SIZE, (i + 1) * BATCH_SIZE),
@@ -219,6 +221,15 @@ export async function runAnalysis(input: RunInput): Promise<RunOutput> {
       }
       if (todo.length) claudeFailed.push(`No result for ${todo.map((c) => c.field.field_id).join(", ")}`);
     });
+  }
+
+  // 5b) Foto: se crop.health ha trovato un problema che Claude non ha trasformato in alert, lo si aggiunge
+  const photoAlerts = new Map(
+    [...fieldsWithNewPhotos].map((id) => [id, cropHealthAlert(newPhotoResults.filter((r) => r.photo.fieldId === id).map((r) => r.cropHealth))]),
+  );
+  for (const [id, alert] of photoAlerts) {
+    const result = results.get(id);
+    if (result) results.set(id, ensurePhotoIssue(result, alert));
   }
 
   // 6) Nuove tabelle. Per campo: risultato nuovo di Claude, oppure quanto si sapeva già
@@ -255,7 +266,19 @@ export async function runAnalysis(input: RunInput): Promise<RunOutput> {
     } else if (fingerprint && fingerprint === previousFingerprints[id]) {
       keepPrevious(); // evidenze invariate: stesso risultato di prima
     } else if (fingerprint || !isRiskEnabled()) {
-      keepPrevious(); // da rivalutare ma Claude assente o fallito: si riprova al prossimo giro
+      // da rivalutare ma Claude assente o fallito: si tiene quanto si sapeva, più l'eventuale alert della foto,
+      // e si riprova al prossimo giro
+      const photoAlert = photoAlerts.get(id);
+      if (photoAlert) {
+        const out = alertsFromRisk({ field_id: id, flags: [photoAlert.type], severity: photoAlert.severity, alerts: [photoAlert], photo_notes: "" }, agg, now);
+        const replaced = new Set(out.alerts.map((a) => a.category));
+        const kept = (prevAlerts.get(id) ?? []).filter((a) => !replaced.has(a.category));
+        const keptIds = new Set(kept.map((a) => a.id));
+        alerts.push(...kept, ...out.alerts);
+        actions.push(...(prevActions.get(id) ?? []).filter((a) => keptIds.has(a.alertId)), ...out.actions);
+      } else {
+        keepPrevious();
+      }
       delete fingerprints[id];
     } else {
       delete fingerprints[id]; // nessuna evidenza di campo → nessun alert (come risk.py: flags [])

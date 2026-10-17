@@ -56,10 +56,20 @@ function Result({ state }: { state: NonNullable<UploadState> }) {
     );
   }
   if (state.issues.length === 0) {
+    // crop.health vede un problema ma il campo ha già quell'alert: niente di nuovo, ma non "tutto ok"
+    const known = state.cropHealth && !/^healthy$/i.test(state.cropHealth.name);
     return (
-      <div role="status" className="rounded-xl border border-ok bg-ok/10 p-3 text-sm text-ink">
+      <div role="status" className={`rounded-xl border p-3 text-sm text-ink ${known ? "border-maturity bg-maturity/10" : "border-ok bg-ok/10"}`}>
         <p className="flex items-center gap-2 font-semibold">
-          <CircleCheck size={18} className="text-ok" aria-hidden /> No new issue detected in this photo
+          {known ? (
+            <>
+              <TriangleAlert size={18} className="text-maturity" aria-hidden /> Photo checked: this issue is already in the field&apos;s alerts
+            </>
+          ) : (
+            <>
+              <CircleCheck size={18} className="text-ok" aria-hidden /> No issue detected in this photo
+            </>
+          )}
         </p>
         {state.notes && <p className="mt-1 text-ink/80">{state.notes}</p>}
         {state.cropHealth && (

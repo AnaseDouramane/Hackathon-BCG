@@ -6,6 +6,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { betaZodOutputFormat } from "@anthropic-ai/sdk/helpers/beta/zod";
 import { z } from "zod";
 import { CLAUDE_MODEL } from "@/lib/assistant/claude";
+import type { CropHealthResult } from "./crophealth";
 
 export const isRiskEnabled = () => Boolean(process.env.ANTHROPIC_API_KEY);
 
@@ -49,12 +50,14 @@ If evidence is missing, flags must be []. Severity is the highest risk supported
 How the app shows your output:
 - One alert per type per field. Every flag must be justified by an alert of that type, and evidence must cite a fact present in the data (values, dates, findings), not a hypothesis.
 - For Urgent, also set severity "critical" on the alert of the problem that is urgent.
+- evidence and rationale: at most two short sentences each, plain English; they are shown in the app and emailed to the farmer.
 - title: short plain English (at most ~70 characters), what the officer reads in a list. When a disease is only inferred from sensor or weather conditions, the title must start with "Conditions favourable to".
 - Sensor, drone and photo findings are suspicions, not diagnoses: say "suspected" where it applies and suggest checking in the field.
 - source: the evidence the alert mainly rests on: SENSOR (soil sensors and sensor-based reports), DRONE (drone imagery), WEATHER (driven by the forecast), MANUAL (field visit or an uploaded photo).
 - confidence: 0 to 1. Reuse the confidence of the field report or the photo identification probability when given.
 - actions: 1 to 3 practical steps in priority order, each with why and due_in_days (0 = today), simple enough for a smallholder farmer.
-- photo_notes: when photos of the field are attached, describe in one or two sentences what they show (crop, growth stage, ripeness, visible symptoms); otherwise an empty string. Earlier photos are summarised in observations.photos.
+- Uploaded photos (observations.photos; is_new = attached to this request): the extension officer took them in this field. crop.health is a plant-pathology model run on the same photo, and its result is given next to each image and in observations.photos[].crop_health. Treat its top suggestion that is not "healthy" as a diagnostic result (suspected) and raise an alert for it: nutrient deficiencies → Fertilizer; diseases, pests and insect damage → Disease; ripe fruit or crop dry-down → Maturity. Use its probability as confidence; check the image yourself and describe the visible symptoms in evidence. Never discard a photo: if the crop in the photo looks different from the field's crop, still raise the alert from the visible symptoms and mention the mismatch in the rationale. If crop.health says "healthy" and you see no symptoms, raise nothing for the photo.
+- photo_notes: when photos are attached, at most two short sentences (under 200 characters) on what they show; otherwise an empty string.
 - Keep the wording and severity of existing field reports unless new evidence (forecast, fertilizer plan, photos) changes the picture, and say so in the rationale when it does.
 Every field in the request must appear exactly once in results.`;
 
@@ -68,7 +71,21 @@ export function validateResult(result: RiskResult): RiskResult {
   return { ...result, flags, severity: flags.length ? result.severity : "none", alerts };
 }
 
-export type RiskImage = { fieldId: string; base64: string; mediaType: "image/jpeg" | "image/png" | "image/webp" };
+export type RiskImage = {
+  fieldId: string;
+  base64: string;
+  mediaType: "image/jpeg" | "image/png" | "image/webp";
+  cropHealth?: CropHealthResult | null;
+};
+
+/** Didascalia dell'immagine con il risultato di crop.health sulla stessa foto. */
+export function photoCaption(img: RiskImage): string {
+  const ch = img.cropHealth;
+  if (!ch) return `New photo uploaded for field ${img.fieldId} (no crop.health result).`;
+  const list = (items: { name: string; probability: number }[]) =>
+    items.map((i) => `${i.name} (${Math.round(i.probability * 100)}%)`).join(", ") || "none";
+  return `New photo uploaded for field ${img.fieldId}. crop.health on this photo: issues ${list(ch.diseases)}; crop ${list(ch.crops)}.`;
+}
 
 let client: Anthropic | null = null;
 
@@ -76,7 +93,7 @@ let client: Anthropic | null = null;
 export async function classifyFields(fields: { field: { field_id: string } }[], now: Date, images: RiskImage[] = []): Promise<RiskResult[]> {
   client ??= new Anthropic(); // legge ANTHROPIC_API_KEY
   const imageBlocks = images.flatMap((img) => [
-    { type: "text" as const, text: `Photo uploaded for field ${img.fieldId}:` },
+    { type: "text" as const, text: photoCaption(img) },
     { type: "image" as const, source: { type: "base64" as const, media_type: img.mediaType, data: img.base64 } },
   ]);
   const response = await client.beta.messages.parse({
