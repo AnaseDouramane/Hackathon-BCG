@@ -1,7 +1,8 @@
 # Script Python di riferimento (Anase)
 
-Client originali per i servizi esterni. L'app Next.js usa le loro traduzioni TypeScript in `lib/external/`;
-questi script restano per prove manuali dal terminale.
+Client originali per i servizi esterni. L'app Next.js usa le loro traduzioni TypeScript in `lib/external/`
+(`weather.ts`, `isda.ts`, `crophealth.ts`, `risk.ts`), collegate dalla pipeline in `lib/pipeline/`
+(bottone "Update" in dashboard); questi script restano per prove manuali dal terminale.
 
 | Script | Servizio | Chiave in `.env` |
 |---|---|---|

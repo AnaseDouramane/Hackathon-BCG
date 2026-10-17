@@ -8,6 +8,7 @@ import { AlertList } from "@/components/field/AlertList";
 import { CropTimeline } from "@/components/field/CropTimeline";
 import { DronePanel } from "@/components/field/DronePanel";
 import { Lamp } from "@/components/field/Lamp";
+import { PlantPhotosPanel } from "@/components/field/PlantPhotosPanel";
 import { SensorPanel } from "@/components/field/SensorPanel";
 import { WeatherStrip } from "@/components/field/WeatherStrip";
 import { CROP_PHOTO } from "@/components/ui/crop";
@@ -21,6 +22,9 @@ function bannerImage(cropCode: CropCode | undefined): string {
   if (!cropCode) return FALLBACK_GRADIENT;
   return `url(${CROP_PHOTO[cropCode].src}), ${FALLBACK_GRADIENT}`;
 }
+
+// L'upload di una foto (Server Action di questa pagina) analizza subito il campo con crop.health e Claude
+export const maxDuration = 120;
 
 export async function generateStaticParams() {
   return (await listFieldIds()).map((id) => ({ id }));
@@ -104,6 +108,7 @@ async function FieldContent({ params }: { params: PageProps<"/fields/[id]">["par
         <div className="space-y-4">
           <SensorPanel reading={field.latestSensorReading} />
           <DronePanel capture={field.latestDroneCapture} droneAlert={droneAlert} />
+          <PlantPhotosPanel fieldId={field.id} />
         </div>
       </div>
     </main>

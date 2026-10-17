@@ -1,7 +1,10 @@
-// Fase 1: legge data/seed.json. È il "back finto": zero configurazione.
+// Fase 1: i dati vengono dall'ultima analisi delle API (snapshot salvato da "Update"), che ha la stessa
+// forma di data/seed.json. Senza snapshot (primo avvio, test, storage assente) si usa data/seed.json.
 import rawSeed from "@/data/seed.json";
 import { type Seed, SeedSchema } from "@/lib/contract/seed-schema";
 import type { FieldAggregate } from "@/lib/domain/types";
+import { isStorageEnabled } from "@/lib/storage";
+import { getLatestSnapshot } from "./snapshot-store";
 import type { Repository } from "./repository";
 
 /** Unisce le tabelle del seed in un aggregato per campo. */
@@ -43,15 +46,31 @@ export function buildAggregates(seed: Seed): FieldAggregate[] {
   });
 }
 
+type Indexed = { aggregates: FieldAggregate[]; byId: Map<string, FieldAggregate> };
+
+const index = (aggregates: FieldAggregate[]): Indexed => ({ aggregates, byId: new Map(aggregates.map((a) => [a.field.id, a])) });
+
+/** Strato "IoT simulato" della demo e piano B quando non c'è ancora un'analisi. */
 export const seed: Seed = SeedSchema.parse(rawSeed);
-const aggregates = buildAggregates(seed);
-const byId = new Map(aggregates.map((a) => [a.field.id, a]));
+const fallback = index(buildAggregates(seed));
+
+let current: { createdAt: string; data: Indexed } | null = null;
+
+async function load(): Promise<Indexed> {
+  if (!isStorageEnabled()) return fallback;
+  const snapshot = await getLatestSnapshot();
+  if (!snapshot) return fallback;
+  if (current?.createdAt !== snapshot.createdAt) {
+    current = { createdAt: snapshot.createdAt, data: index(buildAggregates(SeedSchema.parse(snapshot.seed))) };
+  }
+  return current.data;
+}
 
 export const memoryRepository: Repository = {
   async listFieldAggregates() {
-    return aggregates;
+    return (await load()).aggregates;
   },
   async getFieldAggregate(id) {
-    return byId.get(id) ?? null;
+    return (await load()).byId.get(id) ?? null;
   },
 };

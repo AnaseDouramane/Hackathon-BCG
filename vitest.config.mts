@@ -7,5 +7,7 @@ export default defineConfig({
   },
   test: {
     include: ["tests/**/*.test.ts"],
+    // i test leggono sempre data/seed.json, mai gli snapshot salvati in .data/
+    env: { FILE_STORAGE: "off" },
   },
 });

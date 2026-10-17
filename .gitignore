@@ -41,6 +41,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# file salvati in locale senza Vercel Blob (lib/storage.ts)
+/.data/
+
 # python (tools/python)
 __pycache__/
 *.py[cod]
