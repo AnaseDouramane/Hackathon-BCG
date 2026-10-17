@@ -35,11 +35,11 @@ export function SettingsMenu() {
         <Mail size={16} aria-hidden /> Alert recipients
       </Link>
       <Link
-        href="/settings/presentation"
+        href="/settings/feasibility"
         role="menuitem"
         className="flex min-h-11 w-full items-center gap-2 rounded-lg px-3 text-left text-sm font-semibold text-ink hover:bg-line/50"
       >
-        <Presentation size={16} aria-hidden /> Presentation
+        <Presentation size={16} aria-hidden /> Feasibility
       </Link>
     </Menu>
   );

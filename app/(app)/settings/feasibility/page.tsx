@@ -2,12 +2,12 @@ import { ArrowLeft, Maximize2 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = { title: "Presentation" };
+export const metadata: Metadata = { title: "Feasibility" };
 
 // Le slide sono un HTML statico in public/presentation/ (protetto dal login come il resto dell'app).
 const SLIDES = "/presentation/felix-field-slides.html";
 
-export default function PresentationPage() {
+export default function FeasibilityPage() {
   return (
     <main className="flex h-[calc(100dvh-5.5rem)] flex-col gap-3">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -19,7 +19,7 @@ export default function PresentationPage() {
           >
             <ArrowLeft size={18} />
           </Link>
-          <h1 className="text-2xl font-bold text-ink">Presentation</h1>
+          <h1 className="text-2xl font-bold text-ink">Feasibility</h1>
         </div>
         <a
           href={SLIDES}
