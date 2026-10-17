@@ -5,8 +5,8 @@
 import "leaflet/dist/leaflet.css";
 import type { LatLngBoundsExpression, LatLngTuple } from "leaflet";
 import Link from "next/link";
-import { useLayoutEffect, useState } from "react";
-import { CircleMarker, MapContainer, Polygon, Popup, TileLayer, useMapEvents } from "react-leaflet";
+import { useEffect, useLayoutEffect, useState } from "react";
+import { CircleMarker, MapContainer, Polygon, Popup, TileLayer, useMap, useMapEvents } from "react-leaflet";
 import type { FieldSummary, LampColor } from "@/lib/contract/schemas";
 import { LAMP_HEX } from "@/lib/domain/colors";
 import { formatDue } from "@/lib/domain/format";
@@ -112,6 +112,18 @@ function FieldPopup({ field, now, onClose }: { field: FieldSummary; now: Date; o
   );
 }
 
+/** Leaflet only listens to window resizes: redraw when the container changes (e.g. sidebar toggle). */
+function ResizeSync() {
+  const map = useMap();
+  useEffect(() => {
+    const el = map.getContainer();
+    const observer = new ResizeObserver(() => map.invalidateSize());
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [map]);
+  return null;
+}
+
 function FieldLayers({ fields, highlightId, onHover, nowIso }: Omit<FieldMapProps, "boundsFields" | "className">) {
   const [zoom, setZoom] = useState<number | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -201,6 +213,7 @@ export default function FieldMap({ fields, boundsFields, highlightId, onHover, n
           className="h-full w-full"
         >
           <TileLayer url={ESRI_URL} attribution={ESRI_ATTRIBUTION} maxNativeZoom={17} maxZoom={19} />
+          <ResizeSync />
           <FieldLayers fields={fields} highlightId={highlightId} onHover={onHover} nowIso={nowIso} />
         </MapContainer>
       )}

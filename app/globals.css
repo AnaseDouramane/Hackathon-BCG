@@ -22,6 +22,14 @@ html {
   color-scheme: light;
 }
 
+/* The app shell (top bar + sidebar + content) is exactly viewport-high and scrolls inside its content
+   area, so the document itself must never show a second scrollbar. */
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   background: var(--color-surface);
   color: var(--color-ink);

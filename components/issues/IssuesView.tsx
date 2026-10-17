@@ -46,7 +46,7 @@ export function IssuesView({ fields, nowIso }: { fields: FieldSummary[]; nowIso:
               <IssueRow key={field.id} field={field} now={now} highlighted={hovered === field.id} onHover={setHovered} />
             ))}
           </ol>
-          <div className="h-[420px] lg:sticky lg:top-20">
+          <div className="h-[420px] lg:sticky lg:top-0">
             <FieldMapLazy fields={shown} highlightId={hovered} onHover={setHovered} nowIso={nowIso} className="h-full" />
           </div>
         </div>
